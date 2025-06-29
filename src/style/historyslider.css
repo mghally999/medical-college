@@ -1,0 +1,17 @@
+.slick-prev::before,
+.slick-next::before {
+    @apply hidden
+}
+
+.slick-prev,
+.slick-next {
+    @apply absolute top-3/4 lg:hidden
+}
+
+.slick-prev{
+    @apply -left-2/4
+}
+
+.slick-next{
+    @apply -left-40
+}
