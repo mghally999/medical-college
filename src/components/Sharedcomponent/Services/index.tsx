@@ -5,17 +5,58 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PaginationTwo from "@/components/Common/Paginationtwo";
-import { programs } from "@/data/programs";
+import { programs } from "@/app/data/programs";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCompass, FiAward, FiSearch } from "react-icons/fi";
+
+// Type definitions
+type Program = {
+  id: string;
+  title: string;
+  school: string;
+  category: string;
+  level?: string;
+  duration?: string;
+  href: string;
+  imageSrc: string;
+  rating?: number;
+  discountedPrice?: number;
+  popular?: boolean;
+  credentialTitle?: string;
+};
+
+type EnhancedProgram = Program & {
+  professional: boolean;
+  duration: string;
+  level: string;
+  searchText: string;
+};
+
+type ConstellationCourse = EnhancedProgram & {
+  position: {
+    x: number;
+    y: number;
+    size: number;
+  };
+};
+
+type BrandColors = {
+  primary: string;
+  secondary: string;
+  accent: string;
+  lightText: string;
+  darkText: string;
+  border: string;
+  highlight: string;
+};
 
 const categories = [
   "Health & Social Care",
   "Business & Management",
   "Culinary Arts & Tourism",
-];
+] as const;
 
-const brandColors = {
+const brandColors: BrandColors = {
   primary: "#001E6C",
   secondary: "#000C2D",
   accent: "#E05500",
@@ -25,12 +66,22 @@ const brandColors = {
   highlight: "#0A1445",
 };
 
+const sortingOptions = [
+  "Default",
+  "Rating (asc)",
+  "Rating (dsc)",
+  "Price (asc)",
+  "Price (dsc)",
+  "Duration (asc)",
+  "Duration (dsc)",
+] as const;
+
 const CourseListOne = () => {
   const pathname = usePathname();
   const isProfessionalRoute = pathname.includes("/professional-courses");
 
   // Enhanced programs data with memoization
-  const enhancedPrograms = useMemo(() => {
+  const enhancedPrograms = useMemo((): EnhancedProgram[] => {
     return programs.map((program) => ({
       ...program,
       professional: program.href.includes("/professional-courses/"),
@@ -43,13 +94,14 @@ const CourseListOne = () => {
 
   // State management
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState(
-    isProfessionalRoute ? "professional" : "all"
-  );
-  const [currentSortingOption, setCurrentSortingOption] = useState("Default");
+  const [activeFilter, setActiveFilter] = useState<
+    (typeof categories)[number] | "all" | "professional"
+  >(isProfessionalRoute ? "professional" : "all");
+  const [currentSortingOption, setCurrentSortingOption] =
+    useState<(typeof sortingOptions)[number]>("Default");
   const [pageNumber, setPageNumber] = useState(1);
-  const [hoveredCourse, setHoveredCourse] = useState(null);
-  const [viewMode, setViewMode] = useState("grid");
+  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<"grid" | "constellation">("grid");
 
   // Filter and sort data with memoization
   const { filteredData, professionalCount } = useMemo(() => {
@@ -101,10 +153,10 @@ const CourseListOne = () => {
     // Sort the results
     switch (currentSortingOption) {
       case "Rating (asc)":
-        result.sort((a, b) => a.rating - b.rating);
+        result.sort((a, b) => (a.rating || 0) - (b.rating || 0));
         break;
       case "Rating (dsc)":
-        result.sort((a, b) => b.rating - a.rating);
+        result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
         break;
       case "Price (asc)":
         result.sort(
@@ -140,7 +192,7 @@ const CourseListOne = () => {
   }, [filteredData, pageNumber]);
 
   // Constellation view calculations
-  const constellationCourses = useMemo(() => {
+  const constellationCourses = useMemo((): ConstellationCourse[] => {
     return filteredData.slice(0, 12).map((course, i) => {
       const angle = (i / 12) * Math.PI * 2;
       const distance = 150 + Math.random() * 50;
@@ -156,10 +208,13 @@ const CourseListOne = () => {
   }, [filteredData]);
 
   // Handlers with useCallback for performance
-  const handleCategoryClick = useCallback((category) => {
-    setActiveFilter(category);
-    setPageNumber(1);
-  }, []);
+  const handleCategoryClick = useCallback(
+    (category: (typeof categories)[number]) => {
+      setActiveFilter(category);
+      setPageNumber(1);
+    },
+    []
+  );
 
   const handleFilterProfessional = useCallback(() => {
     setActiveFilter((prev) =>
@@ -168,10 +223,13 @@ const CourseListOne = () => {
     setPageNumber(1);
   }, []);
 
-  const handleSearchChange = useCallback((e) => {
-    setSearchQuery(e.target.value);
-    setPageNumber(1);
-  }, []);
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(e.target.value);
+      setPageNumber(1);
+    },
+    []
+  );
 
   const handleAllCoursesClick = useCallback(() => {
     setActiveFilter("all");
@@ -179,7 +237,7 @@ const CourseListOne = () => {
     setPageNumber(1);
   }, []);
 
-  const getLevelLabel = useCallback((level) => {
+  const getLevelLabel = useCallback((level: string): string => {
     switch (level) {
       case "Level 3":
         return "Beginner";
@@ -193,7 +251,7 @@ const CourseListOne = () => {
     }
   }, []);
 
-  const renderCourseTitle = useCallback((course) => {
+  const renderCourseTitle = useCallback((course: EnhancedProgram): string => {
     if (course.professional) {
       return course.title;
     } else {

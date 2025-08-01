@@ -7,7 +7,7 @@ export const programs = [
   //   category: "Information Technology",
   //   level: "Level 4",
   //   duration: 120,
-  //   imageSrc: "/assets/img/coursesCards/information-technology-1.jpg",
+  //   imageSrc: "/images/coursesCards/information-technology-1.jpg",
   //   professional: false,
   // },
   // {
@@ -18,7 +18,7 @@ export const programs = [
   //   category: "Information Technology",
   //   level: "Level 5",
   //   duration: 120,
-  //   imageSrc: "/assets/img/coursesCards/information-technology.png",
+  //   imageSrc: "/images/coursesCards/information-technology.png",
   //   professional: false,
   // },
   // {
@@ -29,7 +29,7 @@ export const programs = [
   //   category: "Health & Social Care Management",
   //   level: "Level 3",
   //   duration: 120,
-  //   imageSrc: "/assets/img/coursesCards/health-science-1.png",
+  //   imageSrc: "/images/coursesCards/health-science-1.png",
   //   professional: false,
   // },
   {
@@ -40,7 +40,7 @@ export const programs = [
     category: "Health & Social Care Management",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/health-science-2.png",
+    imageSrc: "/images/coursesCards/health-science-2.png",
     professional: false,
   },
   {
@@ -51,7 +51,7 @@ export const programs = [
     category: "Health & Social Care Management",
     level: "Level 5",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/health-science-3.jpg",
+    imageSrc: "/images/coursesCards/health-science-3.jpg",
     professional: false,
   },
   {
@@ -64,7 +64,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/health-science-4.jpg",
+    imageSrc: "/images/coursesCards/health-science-4.jpg",
     professional: true,
   },
 
@@ -77,7 +77,7 @@ export const programs = [
     category: "Tourism & Hospitality",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/tourism-hospitality.jpg",
+    imageSrc: "/images/coursesCards/tourism-hospitality.jpg",
     professional: false,
   },
   {
@@ -88,7 +88,7 @@ export const programs = [
     category: "Tourism & Hospitality",
     level: "Level 5",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/tourism-hospitality-1.jpg",
+    imageSrc: "/images/coursesCards/tourism-hospitality-1.jpg",
     professional: false,
   },
   // {
@@ -99,7 +99,7 @@ export const programs = [
   //   category: "Tourism & Hospitality",
   //   level: "Level 6",
   //   duration: 120,
-  //   imageSrc: "/assets/img/coursesCards/tourism-hospitality-2.jpg",
+  //   imageSrc: "/images/coursesCards/tourism-hospitality-2.jpg",
   //   professional: false,
   // },
   // {
@@ -110,7 +110,7 @@ export const programs = [
   //   category: "Tourism & Hospitality",
   //   level: "Level 7",
   //   duration: 120,
-  //   imageSrc: "/assets/img/coursesCards/tourism-hospitality-3.jpg",
+  //   imageSrc: "/images/coursesCards/tourism-hospitality-3.jpg",
   //   professional: false,
   // },
 
@@ -124,7 +124,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/culinary-arts.jpg",
+    imageSrc: "/images/coursesCards/culinary-arts.jpg",
     professional: true,
   },
   {
@@ -136,7 +136,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/housekeeping.jpg",
+    imageSrc: "/images/coursesCards/housekeeping.jpg",
     professional: true,
   },
   {
@@ -148,7 +148,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/hr-management.png",
+    imageSrc: "/images/coursesCards/hr-management.png",
     professional: true,
   },
   {
@@ -160,7 +160,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/food-safety.png",
+    imageSrc: "/images/coursesCards/food-safety.png",
     professional: true,
   },
   {
@@ -172,7 +172,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/food-beverage.png",
+    imageSrc: "/images/coursesCards/food-beverage.png",
     professional: true,
   },
   {
@@ -184,7 +184,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/culinary-arts-5.jpg",
+    imageSrc: "/images/coursesCards/culinary-arts-5.jpg",
     professional: true,
   },
   {
@@ -196,7 +196,7 @@ export const programs = [
     category: "Professional Courses",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/culinary-arts-6.jpg",
+    imageSrc: "/images/coursesCards/culinary-arts-6.jpg",
     professional: true,
   },
 
@@ -209,7 +209,7 @@ export const programs = [
   //   category: "Business Management",
   //   level: "Level 3",
   //   duration: 120,
-  //   imageSrc: "/assets/img/coursesCards/business-management.jpg",
+  //   imageSrc: "/images/coursesCards/business-management.jpg",
   //   professional: false,
   // },
   {
@@ -220,7 +220,7 @@ export const programs = [
     category: "Business Management",
     level: "Level 4",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/business-management-1.jpg",
+    imageSrc: "/images/coursesCards/business-management-1.jpg",
     professional: false,
   },
   {
@@ -231,7 +231,7 @@ export const programs = [
     category: "Business Management",
     level: "Level 5",
     duration: 120,
-    imageSrc: "/assets/img/coursesCards/business-management-1.jpg",
+    imageSrc: "/images/coursesCards/business-management-1.jpg",
     professional: false,
   },
 ];

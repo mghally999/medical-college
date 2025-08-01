@@ -1,31 +1,17 @@
 "use client";
 import { useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FiUpload, FiCheck, FiChevronDown, FiLoader } from "react-icons/fi";
-
-type FileUpload = {
-  file: File | null;
-  name: string;
-  uploading: boolean;
-  uploaded: boolean;
-};
-
-type FormData = {
-  firstName: string;
-  lastName: string;
-  address: string;
-  country: string;
-  city: string;
-  zipCode: string;
-  email: string;
-  phone: string;
-  hearAboutUs: string;
-  admissionIntake: string;
-  interestedProgram: string;
-};
+import {
+  FiUpload,
+  FiCheck,
+  FiChevronDown,
+  FiLoader,
+  FiSend,
+} from "react-icons/fi";
+import { FaGraduationCap, FaGlobe, FaUserGraduate } from "react-icons/fa";
 
 export default function ApplicationForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     address: "",
@@ -71,7 +57,7 @@ export default function ApplicationForm() {
   };
 
   const handleFileChange = (
-    field: keyof typeof fileUploads,
+    field: string,
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (e.target.files && e.target.files[0]) {
@@ -79,7 +65,7 @@ export default function ApplicationForm() {
       setFileUploads((prev) => ({
         ...prev,
         [field]: {
-          ...prev[field],
+          ...prev[field as keyof typeof fileUploads],
           file,
           name: file.name,
           uploading: true,
@@ -92,7 +78,7 @@ export default function ApplicationForm() {
         setFileUploads((prev) => ({
           ...prev,
           [field]: {
-            ...prev[field],
+            ...prev[field as keyof typeof fileUploads],
             uploading: false,
             uploaded: true,
           },
@@ -146,14 +132,14 @@ export default function ApplicationForm() {
 
   if (formSubmitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 to-purple-800 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f0c29] to-[#6A0D1B] p-4">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-md w-full"
+          className="bg-[#1a1a2e] rounded-3xl shadow-2xl overflow-hidden max-w-md w-full border border-[#FF5E00]/30"
         >
-          <div className="bg-black p-8 text-center">
+          <div className="bg-gradient-to-r from-[#FF5E00] to-[#6A0D1B] p-8 text-center">
             <motion.div
               animate={{
                 scale: [1, 1.1, 1],
@@ -168,14 +154,14 @@ export default function ApplicationForm() {
             </h2>
           </div>
           <div className="p-8 text-center">
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-300 mb-6">
               Thank you for your application. We've received your information
               and will contact you within 3-5 business days.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-medium shadow-lg"
+              className="px-6 py-3 bg-gradient-to-r from-[#FF5E00] to-[#6A0D1B] text-white rounded-full font-medium shadow-lg hover:shadow-[#FF5E00]/30"
             >
               Back to Home
             </motion.button>
@@ -186,19 +172,42 @@ export default function ApplicationForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] to-[#6A0D1B] py-12 px-4 sm:px-6 lg:px-8">
+      {/* Cosmic background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-[#FF5E00] rounded-full filter blur-[100px] opacity-10"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-[#6A0D1B] rounded-full filter blur-[120px] opacity-15"></div>
+
+        {/* Stars */}
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full"
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.5 + 0.5,
+              animation: `twinkle ${Math.random() * 5 + 3}s infinite alternate`,
+            }}
+          ></div>
+        ))}
+      </div>
+
+      <div className="relative max-w-5xl mx-auto">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-3xl shadow-2xl overflow-hidden"
+          className="bg-[#1a1a2e] rounded-3xl shadow-2xl overflow-hidden border border-[#FF5E00]/30"
         >
           {/* Progress Steps */}
-          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-6">
+          <div className="bg-gradient-to-r from-[#FF5E00] to-[#6A0D1B] px-8 py-6">
             <div className="flex justify-between items-center mb-6">
-              <h1 className="text-2xl font-bold text-white">
-                University Application
+              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                <FaUserGraduate className="text-xl" />
+                CSEI Academy Application
               </h1>
               <div className="text-white font-medium">
                 Step {activeSection + 1} of {sections.length}
@@ -213,8 +222,8 @@ export default function ApplicationForm() {
                     onClick={() => setActiveSection(index)}
                     className={`w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all ${
                       index <= activeSection
-                        ? "bg-white text-purple-600"
-                        : "bg-indigo-400 text-white"
+                        ? "bg-white text-[#FF5E00]"
+                        : "bg-[#6A0D1B] text-white"
                     }`}
                   >
                     {index + 1}
@@ -223,14 +232,14 @@ export default function ApplicationForm() {
                     className={`text-xs mt-2 text-center ${
                       index <= activeSection
                         ? "text-white font-medium"
-                        : "text-indigo-200"
+                        : "text-[#FF5E00]"
                     }`}
                   >
                     {section.split(" ")[0]}
                   </div>
                 </div>
               ))}
-              <div className="absolute h-1 bg-indigo-400 top-5 left-5 right-5 -z-0">
+              <div className="absolute h-1 bg-[#6A0D1B] top-5 left-5 right-5 -z-0">
                 <motion.div
                   className="h-full bg-white"
                   initial={{ width: "0%" }}
@@ -248,7 +257,6 @@ export default function ApplicationForm() {
             <form onSubmit={handleSubmit}>
               <motion.div
                 key={activeSection}
-                initial={{ x: activeSection > 0 ? 100 : -100, opacity: 0 }}
                 animate={controls}
                 className="space-y-8"
               >
@@ -260,8 +268,8 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        First name <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        First name <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="text"
@@ -269,7 +277,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
 
@@ -278,8 +286,8 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Last name <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Last name <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="text"
@@ -287,7 +295,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
 
@@ -297,8 +305,8 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.3 }}
                       className="md:col-span-2"
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Address <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Address <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="text"
@@ -306,7 +314,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.address}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
 
@@ -315,8 +323,8 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Country <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Country <span className="text-[#FF5E00]">*</span>
                       </label>
                       <div className="relative">
                         <select
@@ -324,13 +332,23 @@ export default function ApplicationForm() {
                           required
                           value={formData.country}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                          className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl appearance-none focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                         >
-                          <option value="">Select country</option>
-                          <option value="US">United States</option>
-                          <option value="CA">Canada</option>
-                          <option value="UK">United Kingdom</option>
-                          <option value="AU">Australia</option>
+                          <option value="" className="bg-[#16213e]">
+                            Select country
+                          </option>
+                          <option value="US" className="bg-[#16213e]">
+                            United States
+                          </option>
+                          <option value="CA" className="bg-[#16213e]">
+                            Canada
+                          </option>
+                          <option value="UK" className="bg-[#16213e]">
+                            United Kingdom
+                          </option>
+                          <option value="AU" className="bg-[#16213e]">
+                            Australia
+                          </option>
                         </select>
                         <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
                       </div>
@@ -341,8 +359,8 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        City <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        City <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="text"
@@ -350,7 +368,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.city}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
                   </div>
@@ -364,9 +382,9 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         Zip / Postal code{" "}
-                        <span className="text-red-500">*</span>
+                        <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="text"
@@ -374,7 +392,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.zipCode}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
 
@@ -383,8 +401,8 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Email <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="email"
@@ -392,7 +410,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
 
@@ -401,8 +419,8 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Phone <span className="text-[#FF5E00]">*</span>
                       </label>
                       <input
                         type="tel"
@@ -410,7 +428,7 @@ export default function ApplicationForm() {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                        className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                       />
                     </motion.div>
 
@@ -419,9 +437,9 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         How did you hear about us?{" "}
-                        <span className="text-red-500">*</span>
+                        <span className="text-[#FF5E00]">*</span>
                       </label>
                       <div className="relative">
                         <select
@@ -429,14 +447,32 @@ export default function ApplicationForm() {
                           required
                           value={formData.hearAboutUs}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                          className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl appearance-none focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                         >
-                          <option value="">Select an option</option>
-                          <option value="social-media">Social Media</option>
-                          <option value="friend">Friend/Family</option>
-                          <option value="search-engine">Search Engine</option>
-                          <option value="advertisement">Advertisement</option>
-                          <option value="other">Other</option>
+                          <option value="" className="bg-[#16213e]">
+                            Select an option
+                          </option>
+                          <option value="social-media" className="bg-[#16213e]">
+                            Social Media
+                          </option>
+                          <option value="friend" className="bg-[#16213e]">
+                            Friend/Family
+                          </option>
+                          <option
+                            value="search-engine"
+                            className="bg-[#16213e]"
+                          >
+                            Search Engine
+                          </option>
+                          <option
+                            value="advertisement"
+                            className="bg-[#16213e]"
+                          >
+                            Advertisement
+                          </option>
+                          <option value="other" className="bg-[#16213e]">
+                            Other
+                          </option>
                         </select>
                         <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
                       </div>
@@ -453,9 +489,9 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.1 }}
                       className="md:col-span-2"
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
                         Interested Program{" "}
-                        <span className="text-red-500">*</span>
+                        <span className="text-[#FF5E00]">*</span>
                       </label>
                       <div className="relative">
                         <select
@@ -463,19 +499,32 @@ export default function ApplicationForm() {
                           required
                           value={formData.interestedProgram}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                          className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl appearance-none focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                         >
-                          <option value="">Select program</option>
-                          <option value="computer-science">
+                          <option value="" className="bg-[#16213e]">
+                            Select program
+                          </option>
+                          <option
+                            value="computer-science"
+                            className="bg-[#16213e]"
+                          >
                             Computer Science
                           </option>
-                          <option value="business-administration">
+                          <option
+                            value="business-administration"
+                            className="bg-[#16213e]"
+                          >
                             Business Administration
                           </option>
-                          <option value="healthcare-management">
+                          <option
+                            value="healthcare-management"
+                            className="bg-[#16213e]"
+                          >
                             Healthcare Management
                           </option>
-                          <option value="engineering">Engineering</option>
+                          <option value="engineering" className="bg-[#16213e]">
+                            Engineering
+                          </option>
                         </select>
                         <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
                       </div>
@@ -486,8 +535,9 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Admission Intake <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-1">
+                        Admission Intake{" "}
+                        <span className="text-[#FF5E00]">*</span>
                       </label>
                       <div className="relative">
                         <select
@@ -495,13 +545,23 @@ export default function ApplicationForm() {
                           required
                           value={formData.admissionIntake}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl appearance-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300"
+                          className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl appearance-none focus:ring-2 focus:ring-[#FF5E00] focus:border-[#FF5E00] text-white transition-all duration-300"
                         >
-                          <option value="">Select intake</option>
-                          <option value="fall-2023">Fall 2023</option>
-                          <option value="spring-2024">Spring 2024</option>
-                          <option value="summer-2024">Summer 2024</option>
-                          <option value="fall-2024">Fall 2024</option>
+                          <option value="" className="bg-[#16213e]">
+                            Select intake
+                          </option>
+                          <option value="fall-2023" className="bg-[#16213e]">
+                            Fall 2023
+                          </option>
+                          <option value="spring-2024" className="bg-[#16213e]">
+                            Spring 2024
+                          </option>
+                          <option value="summer-2024" className="bg-[#16213e]">
+                            Summer 2024
+                          </option>
+                          <option value="fall-2024" className="bg-[#16213e]">
+                            Fall 2024
+                          </option>
                         </select>
                         <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
                       </div>
@@ -517,12 +577,12 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-3">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         Academic Transcripts{" "}
-                        <span className="text-red-500">*</span>
+                        <span className="text-[#FF5E00]">*</span>
                       </label>
                       <div className="flex items-center justify-center w-full">
-                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-purple-500 transition-all duration-300">
+                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#1f2a4a] rounded-xl cursor-pointer hover:border-[#FF5E00] transition-all duration-300 bg-[#16213e]/50">
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             {fileUploads.academicFile.uploaded ? (
                               <motion.div
@@ -537,14 +597,14 @@ export default function ApplicationForm() {
                               <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ repeat: Infinity, duration: 1 }}
-                                className="text-purple-500"
+                                className="text-[#FF5E00]"
                               >
                                 <FiLoader />
                               </motion.div>
                             ) : (
                               <>
                                 <FiUpload className="text-gray-400 text-2xl mb-2" />
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-400">
                                   <span className="font-semibold">
                                     Click to upload
                                   </span>{" "}
@@ -573,11 +633,11 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-3">
-                        CV/Resume <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        CV/Resume <span className="text-[#FF5E00]">*</span>
                       </label>
                       <div className="flex items-center justify-center w-full">
-                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-purple-500 transition-all duration-300">
+                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#1f2a4a] rounded-xl cursor-pointer hover:border-[#FF5E00] transition-all duration-300 bg-[#16213e]/50">
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             {fileUploads.cvFile.uploaded ? (
                               <motion.div
@@ -592,14 +652,14 @@ export default function ApplicationForm() {
                               <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ repeat: Infinity, duration: 1 }}
-                                className="text-purple-500"
+                                className="text-[#FF5E00]"
                               >
                                 <FiLoader />
                               </motion.div>
                             ) : (
                               <>
                                 <FiUpload className="text-gray-400 text-2xl mb-2" />
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-400">
                                   <span className="font-semibold">
                                     Click to upload
                                   </span>{" "}
@@ -626,11 +686,11 @@ export default function ApplicationForm() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-3">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         Experience Certificates (Optional)
                       </label>
                       <div className="flex items-center justify-center w-full">
-                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-purple-500 transition-all duration-300">
+                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#1f2a4a] rounded-xl cursor-pointer hover:border-[#FF5E00] transition-all duration-300 bg-[#16213e]/50">
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             {fileUploads.experienceFile.uploaded ? (
                               <motion.div
@@ -645,14 +705,14 @@ export default function ApplicationForm() {
                               <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ repeat: Infinity, duration: 1 }}
-                                className="text-purple-500"
+                                className="text-[#FF5E00]"
                               >
                                 <FiLoader />
                               </motion.div>
                             ) : (
                               <>
                                 <FiUpload className="text-gray-400 text-2xl mb-2" />
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-400">
                                   <span className="font-semibold">
                                     Click to upload
                                   </span>{" "}
@@ -684,33 +744,33 @@ export default function ApplicationForm() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
-                      className="bg-gray-50 p-6 rounded-xl"
+                      className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4">
                         Personal Information
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <p className="text-sm text-gray-500">First Name</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">First Name</p>
+                          <p className="font-medium text-white">
                             {formData.firstName || "Not provided"}
                           </p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">Last Name</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Last Name</p>
+                          <p className="font-medium text-white">
                             {formData.lastName || "Not provided"}
                           </p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">Address</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Address</p>
+                          <p className="font-medium text-white">
                             {formData.address || "Not provided"}
                           </p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">Country</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Country</p>
+                          <p className="font-medium text-white">
                             {formData.country || "Not provided"}
                           </p>
                         </div>
@@ -721,21 +781,21 @@ export default function ApplicationForm() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
-                      className="bg-gray-50 p-6 rounded-xl"
+                      className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4">
                         Contact Details
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <p className="text-sm text-gray-500">Email</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Email</p>
+                          <p className="font-medium text-white">
                             {formData.email || "Not provided"}
                           </p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">Phone</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Phone</p>
+                          <p className="font-medium text-white">
                             {formData.phone || "Not provided"}
                           </p>
                         </div>
@@ -746,21 +806,21 @@ export default function ApplicationForm() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
-                      className="bg-gray-50 p-6 rounded-xl"
+                      className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4">
                         Program Information
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <p className="text-sm text-gray-500">Program</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Program</p>
+                          <p className="font-medium text-white">
                             {formData.interestedProgram || "Not provided"}
                           </p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-500">Intake</p>
-                          <p className="font-medium">
+                          <p className="text-sm text-gray-400">Intake</p>
+                          <p className="font-medium text-white">
                             {formData.admissionIntake || "Not provided"}
                           </p>
                         </div>
@@ -771,22 +831,22 @@ export default function ApplicationForm() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
-                      className="bg-gray-50 p-6 rounded-xl"
+                      className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4">
                         Documents
                       </h3>
                       <div className="space-y-2">
                         <div className="flex items-center">
                           <FiCheck className="text-green-500 mr-2" />
-                          <span>
+                          <span className="text-white">
                             Academic Transcripts:{" "}
                             {fileUploads.academicFile.name || "Not uploaded"}
                           </span>
                         </div>
                         <div className="flex items-center">
                           <FiCheck className="text-green-500 mr-2" />
-                          <span>
+                          <span className="text-white">
                             CV/Resume:{" "}
                             {fileUploads.cvFile.name || "Not uploaded"}
                           </span>
@@ -794,7 +854,7 @@ export default function ApplicationForm() {
                         {fileUploads.experienceFile.name && (
                           <div className="flex items-center">
                             <FiCheck className="text-green-500 mr-2" />
-                            <span>
+                            <span className="text-white">
                               Experience Certificates:{" "}
                               {fileUploads.experienceFile.name}
                             </span>
@@ -816,17 +876,17 @@ export default function ApplicationForm() {
                             name="privacy"
                             type="checkbox"
                             required
-                            className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 rounded"
+                            className="focus:ring-[#FF5E00] h-4 w-4 text-[#FF5E00] border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
                           <label
                             htmlFor="privacy"
-                            className="font-medium text-gray-700"
+                            className="font-medium text-gray-300"
                           >
                             I agree to the privacy policy
                           </label>
-                          <p className="text-gray-500">
+                          <p className="text-gray-400">
                             We'll never share your information with anyone else.
                           </p>
                         </div>
@@ -843,7 +903,7 @@ export default function ApplicationForm() {
                     onClick={prevSection}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl font-medium"
+                    className="px-6 py-3 bg-[#1f2a4a] text-gray-300 rounded-xl font-medium hover:bg-[#2a3a5f] transition-colors"
                   >
                     Back
                   </motion.button>
@@ -857,7 +917,7 @@ export default function ApplicationForm() {
                     onClick={nextSection}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-medium shadow-lg ml-auto"
+                    className="px-6 py-3 bg-gradient-to-r from-[#FF5E00] to-[#6A0D1B] text-white rounded-xl font-medium shadow-lg ml-auto hover:shadow-[#FF5E00]/30 transition-all"
                   >
                     Continue
                   </motion.button>
@@ -866,8 +926,9 @@ export default function ApplicationForm() {
                     type="submit"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-xl font-medium shadow-lg ml-auto"
+                    className="px-8 py-3 bg-gradient-to-r from-[#FF5E00] to-[#6A0D1B] text-white rounded-xl font-medium shadow-lg ml-auto hover:shadow-[#FF5E00]/30 transition-all flex items-center gap-2"
                   >
+                    <FiSend />
                     Submit Application
                   </motion.button>
                 )}
@@ -876,6 +937,17 @@ export default function ApplicationForm() {
           </div>
         </motion.div>
       </div>
+
+      <style jsx global>{`
+        @keyframes twinkle {
+          0% {
+            opacity: 0.2;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 }
