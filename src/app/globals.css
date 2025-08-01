@@ -56,3 +56,17 @@ section {
 .blog-details h3 {
   @apply mb-6 text-2xl font-bold dark:text-white sm:text-[28px] sm:leading-[40px];
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
