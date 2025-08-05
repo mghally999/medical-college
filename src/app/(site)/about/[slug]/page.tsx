@@ -15,7 +15,7 @@ interface AboutPageData {
   list?: string[];
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default function Page({ params }: any) {
   // Directly destructure params - no need for React.use() in this case
   const { slug } = params;
 

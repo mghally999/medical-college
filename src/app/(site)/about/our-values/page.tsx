@@ -12,17 +12,7 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 
-interface Params {
-  params: { [key: string]: string };
-}
-
-interface ValueItem {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-const values: ValueItem[] = [
+const values = [
   {
     title: "Empowerment",
     description: "Ignite every student’s potential.",
@@ -60,13 +50,14 @@ const values: ValueItem[] = [
   },
 ];
 
-const OurValuesPage: React.FC<Params> = ({ params }) => {
-  const pageData = aboutPagesData.find((page) => page.slug === "our-values");
+const OurValuesPage = () => {
+  const pageData = aboutPagesData.find(
+    (page: any) => page.slug === "our-values"
+  );
   if (!pageData) return notFound();
 
   return (
     <section className="custom-padding">
-      {/* Cards Section */}
       <div className="cards-wrapper">
         <h2 className="values-title">Our Core Values</h2>
         <p className="values-subtext">
@@ -92,31 +83,6 @@ const OurValuesPage: React.FC<Params> = ({ params }) => {
       <style jsx>{`
         .about-subpage {
           font-family: sans-serif;
-        }
-
-        .hero-image {
-          height: 80vh;
-          background-size: cover;
-          background-position: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-        }
-
-        .overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.55);
-        }
-
-        .hero-title {
-          position: relative;
-          z-index: 2;
-          color: white;
-          font-size: 42px;
-          font-weight: 800;
-          text-align: center;
         }
 
         .cards-wrapper {
@@ -184,10 +150,6 @@ const OurValuesPage: React.FC<Params> = ({ params }) => {
         }
 
         @media (max-width: 768px) {
-          .hero-title {
-            font-size: 30px;
-          }
-
           .values-title {
             font-size: 30px;
           }
