@@ -15,6 +15,14 @@ import { UserRegistered } from "@/components/Auth/AuthDialog/UserRegistered";
 import { FailedLogin } from "@/components/Auth/AuthDialog/FailedLogin";
 import AuthDialogContext from "@/app/context/AuthDialogContext";
 
+interface HeaderItem {
+  id: number;
+  label: string; // was 'title'
+  href: string; // was 'path'
+  newTab?: boolean;
+  submenu?: HeaderItem[];
+}
+
 const Header: React.FC = () => {
   const pathUrl = usePathname();
   const { theme, setTheme } = useTheme();
@@ -91,22 +99,22 @@ const Header: React.FC = () => {
     left: 0,
     right: 0,
     width: "100%",
-    height: "150px",
+    height: "80px",
     zIndex: 50,
-    backgroundColor: "#ffffff", // Permanent white background
+    backgroundColor: "#ffffff",
     backdropFilter: "none",
-    boxShadow:
-      "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-    transition: "box-shadow 0.3s ease",
-    paddingTop: "1rem",
-    paddingBottom: "1rem",
+    boxShadow: sticky
+      ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+      : "none",
+    transition: "all 0.3s ease",
+    padding: "0.5rem 0",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
   };
 
   // Container styles
-  const containerStyles = {
+  const containerStyles: React.CSSProperties = {
     width: "100%",
     maxWidth: "1200px",
     margin: "0 auto",
@@ -118,18 +126,18 @@ const Header: React.FC = () => {
   };
 
   // Logo container styles
-  const logoContainerStyles = {
+  const logoContainerStyles: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     height: "100%",
-    maxHeight: "80px",
+    maxHeight: "60px",
     width: "auto",
     flexShrink: 0,
   };
 
   // Navigation styles
-  const navStyles = {
+  const navStyles: React.CSSProperties = {
     display: isMobileView ? "none" : "flex",
     flexGrow: 1,
     justifyContent: "center",
@@ -141,32 +149,29 @@ const Header: React.FC = () => {
   };
 
   // Right controls container
-  const controlsStyles = {
+  const controlsStyles: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     gap: "0.75rem",
   };
 
   // Theme toggle button
-  const themeButtonStyles = {
+  const themeButtonStyles: React.CSSProperties = {
     display: "flex",
     height: "2rem",
     width: "2rem",
     alignItems: "center",
     justifyContent: "center",
-    color: "#1e293b", // Dark color for better contrast on white
+    color: "#1e293b",
     background: "none",
     border: "none",
     borderRadius: "50%",
     cursor: "pointer",
     transition: "background-color 0.2s",
-    ":hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.05)",
-    },
   };
 
   // Auth buttons (desktop)
-  const authButtonStyles = {
+  const authButtonStyles: React.CSSProperties = {
     background: "linear-gradient(to right, #6A0D1B, #420516)",
     color: "#ffffff",
     padding: "0.5rem 1rem",
@@ -177,31 +182,25 @@ const Header: React.FC = () => {
     border: "none",
     cursor: "pointer",
     transition: "filter 0.2s",
-    ":hover": {
-      filter: "brightness(1.1)",
-    },
   };
 
   // Compact auth buttons (mobile/tablet)
-  const compactAuthButtonStyles = {
+  const compactAuthButtonStyles: React.CSSProperties = {
     ...authButtonStyles,
     padding: "0.375rem 0.75rem",
     fontSize: "0.8125rem",
   };
 
   // Secondary auth button (sign up)
-  const secondaryAuthButtonStyles = {
+  const secondaryAuthButtonStyles: React.CSSProperties = {
     ...compactAuthButtonStyles,
     background: "none",
-    border: `1px solid #6A0D1B`,
+    border: "1px solid #6A0D1B",
     color: "#6A0D1B",
-    ":hover": {
-      backgroundColor: "rgba(106, 13, 27, 0.1)",
-    },
   };
 
   // Mobile menu button
-  const mobileMenuButtonStyles = {
+  const mobileMenuButtonStyles: React.CSSProperties = {
     display: isMobileView ? "flex" : "none",
     alignItems: "center",
     justifyContent: "center",
@@ -212,13 +211,10 @@ const Header: React.FC = () => {
     borderRadius: "0.25rem",
     cursor: "pointer",
     color: "#1e293b",
-    ":hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.05)",
-    },
   };
 
   // Mobile menu styles
-  const mobileMenuStyles = {
+  const mobileMenuStyles: React.CSSProperties = {
     position: "fixed",
     top: 0,
     right: 0,
@@ -226,7 +222,7 @@ const Header: React.FC = () => {
     maxWidth: "20rem",
     height: "100vh",
     backgroundColor: "#ffffff",
-    boxShadow: "0 0 1rem rgba(0, 0, 0, 0.1)",
+    boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.1)",
     transform: navbarOpen ? "translateX(0)" : "translateX(100%)",
     transition: "transform 0.3s ease",
     zIndex: 50,
@@ -234,7 +230,7 @@ const Header: React.FC = () => {
   };
 
   // Mobile menu header
-  const mobileMenuHeaderStyles = {
+  const mobileMenuHeaderStyles: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -243,7 +239,7 @@ const Header: React.FC = () => {
   };
 
   // Mobile menu title
-  const mobileMenuTitleStyles = {
+  const mobileMenuTitleStyles: React.CSSProperties = {
     fontSize: "1.125rem",
     fontWeight: 600,
     color: "#1e293b",
@@ -251,20 +247,20 @@ const Header: React.FC = () => {
   };
 
   // Mobile menu close button
-  const mobileMenuCloseButtonStyles = {
+  const mobileMenuCloseButtonStyles: React.CSSProperties = {
     ...mobileMenuButtonStyles,
     display: "flex",
   };
 
   // Mobile menu nav
-  const mobileMenuNavStyles = {
+  const mobileMenuNavStyles: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     padding: "1rem",
   };
 
   // Mobile menu buttons container
-  const mobileMenuButtonsStyles = {
+  const mobileMenuButtonsStyles: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     gap: "0.75rem",
@@ -272,7 +268,7 @@ const Header: React.FC = () => {
   };
 
   // Modal overlay
-  const modalOverlayStyles = {
+  const modalOverlayStyles: React.CSSProperties = {
     position: "fixed",
     top: 0,
     left: 0,
@@ -286,7 +282,7 @@ const Header: React.FC = () => {
   };
 
   // Modal content
-  const modalContentStyles = {
+  const modalContentStyles: React.CSSProperties = {
     position: "relative",
     width: "100%",
     maxWidth: "28rem",
@@ -298,7 +294,7 @@ const Header: React.FC = () => {
   };
 
   // Modal close button
-  const modalCloseButtonStyles = {
+  const modalCloseButtonStyles: React.CSSProperties = {
     position: "absolute",
     top: "0.5rem",
     right: "0.5rem",
@@ -309,7 +305,7 @@ const Header: React.FC = () => {
   };
 
   // Alert container
-  const alertContainerStyles = {
+  const alertContainerStyles: React.CSSProperties = {
     position: "fixed",
     top: "1rem",
     left: "50%",
@@ -328,9 +324,9 @@ const Header: React.FC = () => {
 
         {/* Desktop Navigation */}
         <nav style={navStyles}>
-          {headerData.map((item, index) => (
+          {headerData.map((item: HeaderItem) => (
             <HeaderLink
-              key={index}
+              key={item.id}
               item={item}
               style={{
                 fontSize: "0.9375rem",
@@ -339,9 +335,6 @@ const Header: React.FC = () => {
                 textDecoration: "none",
                 borderRadius: "0.25rem",
                 transition: "background-color 0.2s",
-                ":hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.05)",
-                },
               }}
             />
           ))}
@@ -355,26 +348,27 @@ const Header: React.FC = () => {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             style={themeButtonStyles}
           >
-            <Icon icon="ph:moon" style={{ fontSize: "1.25rem" }} />
+            <Icon
+              icon={theme === "dark" ? "ph:sun" : "ph:moon"}
+              style={{ fontSize: "1.25rem" }}
+            />
           </button>
 
           {/* Desktop Auth Buttons */}
           {!isMobileView && (
             <>
-              <Link
-                href="#"
+              <button
                 style={authButtonStyles}
                 onClick={() => setIsSignInOpen(true)}
               >
                 Sign In
-              </Link>
-              <Link
-                href="#"
+              </button>
+              <button
                 style={authButtonStyles}
                 onClick={() => setIsSignUpOpen(true)}
               >
                 Sign Up
-              </Link>
+              </button>
             </>
           )}
 
@@ -423,9 +417,9 @@ const Header: React.FC = () => {
           </button>
         </div>
         <div style={mobileMenuNavStyles}>
-          {headerData.map((item, index) => (
+          {headerData.map((item: HeaderItem) => (
             <MobileHeaderLink
-              key={index}
+              key={item.id}
               item={item}
               style={{
                 padding: "0.75rem 0",

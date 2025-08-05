@@ -1,13 +1,29 @@
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
-import { HeaderItem } from "../../../../types/menu";
 import { usePathname } from "next/navigation";
 
-const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
+interface HeaderItem {
+  id: number;
+  label: string;
+  href: string;
+  newTab?: boolean;
+  submenu?: HeaderItem[];
+}
+
+interface HeaderLinkProps {
+  item: HeaderItem;
+  style?: React.CSSProperties;
+  className?: string;
+}
+
+const HeaderLink: React.FC<HeaderLinkProps> = ({ item, style, className }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const path = usePathname();
+
   const handleMouseEnter = () => {
-    if (item.submenu) {
+    if (item.submenu?.length) {
       setSubmenuOpen(true);
     }
   };
@@ -16,26 +32,29 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
     setSubmenuOpen(false);
   };
 
+  const isActive =
+    path === item.href || path.startsWith(`/${item.label.toLowerCase()}`);
+
   return (
     <li
-      className={`${item?.submenu ? "relative" : ""}`}
+      className={`relative group`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={style}
     >
       <Link
         href={item.href}
-        className={`text-base text-black dark:text-black py-2 flex hover:text-primary dark:hover:text-primary ${
-          path.startsWith(`/${item.label.toLowerCase()}`)
-            ? "text-primary dark:!text-primary"
-            : null
-        } ${path === item.href ? "text-primary dark:text-primary" : "  "}`}
+        className={`text-base py-2 flex items-center gap-1 transition-all duration-200 ${
+          isActive ? "text-primary" : "text-black"
+        } hover:text-primary ${className || ""}`}
+        target={item.newTab ? "_blank" : "_self"}
       >
         {item.label}
         {item.submenu && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="1.5em"
-            height="1.5em"
+            width="1.2em"
+            height="1.2em"
             viewBox="0 0 24 24"
           >
             <path
@@ -49,20 +68,15 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
           </svg>
         )}
       </Link>
-      {submenuOpen && (
-        <div
-          className="absolute py-2 left-0 mt-0.5 top-8 w-60 bg-white !bg-white shadow-lg rounded-lg"
-          data-aos="fade-up"
-          data-aos-duration="300"
-        >
-          {item.submenu?.map((subItem, index) => (
+
+      {submenuOpen && item.submenu && (
+        <div className="absolute left-0 top-full mt-2 w-60 bg-white shadow-lg rounded-lg z-50">
+          {item.submenu.map((subItem) => (
             <Link
-              key={index}
+              key={subItem.id}
               href={subItem.href}
-              className={`block px-4 py-2 text-black dark:text-black dark:hover:bg-midnight_text hover:bg-gray-200 ${
-                path === subItem.href
-                  ? "bg-primary dark:hover:text-white dark:hover:bg-primary hover:bg-primary hover:text-white text-white dark:bg-primary dark:text-white"
-                  : null
+              className={`block px-4 py-2 text-sm text-black hover:bg-gray-200 transition-all duration-150 ${
+                path === subItem.href ? "bg-primary text-white" : ""
               }`}
             >
               {subItem.label}
