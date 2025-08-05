@@ -18,16 +18,26 @@ import AuthDialogContext from "@/app/context/AuthDialogContext";
 const Header: React.FC = () => {
   const pathUrl = usePathname();
   const { theme, setTheme } = useTheme();
-
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
 
   const navbarRef = useRef<HTMLDivElement>(null);
   const signInRef = useRef<HTMLDivElement>(null);
   const signUpRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  // Check screen size for mobile/tablet view
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobileView(window.innerWidth <= 1061);
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
@@ -74,210 +84,418 @@ const Header: React.FC = () => {
 
   const authDialog = useContext(AuthDialogContext);
 
+  // Header styles - Updated with permanent white background
+  const headerStyles: React.CSSProperties = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "150px",
+    zIndex: 50,
+    backgroundColor: "#ffffff", // Permanent white background
+    backdropFilter: "none",
+    boxShadow:
+      "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    transition: "box-shadow 0.3s ease",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  };
+
+  // Container styles
+  const containerStyles = {
+    width: "100%",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0 1rem",
+    height: "100%",
+  };
+
+  // Logo container styles
+  const logoContainerStyles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    maxHeight: "80px",
+    width: "auto",
+    flexShrink: 0,
+  };
+
+  // Navigation styles
+  const navStyles = {
+    display: isMobileView ? "none" : "flex",
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1rem",
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+  };
+
+  // Right controls container
+  const controlsStyles = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.75rem",
+  };
+
+  // Theme toggle button
+  const themeButtonStyles = {
+    display: "flex",
+    height: "2rem",
+    width: "2rem",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#1e293b", // Dark color for better contrast on white
+    background: "none",
+    border: "none",
+    borderRadius: "50%",
+    cursor: "pointer",
+    transition: "background-color 0.2s",
+    ":hover": {
+      backgroundColor: "rgba(0, 0, 0, 0.05)",
+    },
+  };
+
+  // Auth buttons (desktop)
+  const authButtonStyles = {
+    background: "linear-gradient(to right, #6A0D1B, #420516)",
+    color: "#ffffff",
+    padding: "0.5rem 1rem",
+    borderRadius: "0.5rem",
+    fontSize: "0.875rem",
+    fontWeight: 500,
+    textDecoration: "none",
+    border: "none",
+    cursor: "pointer",
+    transition: "filter 0.2s",
+    ":hover": {
+      filter: "brightness(1.1)",
+    },
+  };
+
+  // Compact auth buttons (mobile/tablet)
+  const compactAuthButtonStyles = {
+    ...authButtonStyles,
+    padding: "0.375rem 0.75rem",
+    fontSize: "0.8125rem",
+  };
+
+  // Secondary auth button (sign up)
+  const secondaryAuthButtonStyles = {
+    ...compactAuthButtonStyles,
+    background: "none",
+    border: `1px solid #6A0D1B`,
+    color: "#6A0D1B",
+    ":hover": {
+      backgroundColor: "rgba(106, 13, 27, 0.1)",
+    },
+  };
+
+  // Mobile menu button
+  const mobileMenuButtonStyles = {
+    display: isMobileView ? "flex" : "none",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "2rem",
+    width: "2rem",
+    background: "none",
+    border: "none",
+    borderRadius: "0.25rem",
+    cursor: "pointer",
+    color: "#1e293b",
+    ":hover": {
+      backgroundColor: "rgba(0, 0, 0, 0.05)",
+    },
+  };
+
+  // Mobile menu styles
+  const mobileMenuStyles = {
+    position: "fixed",
+    top: 0,
+    right: 0,
+    width: "100%",
+    maxWidth: "20rem",
+    height: "100vh",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 0 1rem rgba(0, 0, 0, 0.1)",
+    transform: navbarOpen ? "translateX(0)" : "translateX(100%)",
+    transition: "transform 0.3s ease",
+    zIndex: 50,
+    overflowY: "auto",
+  };
+
+  // Mobile menu header
+  const mobileMenuHeaderStyles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "1rem",
+    borderBottom: "1px solid #e2e8f0",
+  };
+
+  // Mobile menu title
+  const mobileMenuTitleStyles = {
+    fontSize: "1.125rem",
+    fontWeight: 600,
+    color: "#1e293b",
+    margin: 0,
+  };
+
+  // Mobile menu close button
+  const mobileMenuCloseButtonStyles = {
+    ...mobileMenuButtonStyles,
+    display: "flex",
+  };
+
+  // Mobile menu nav
+  const mobileMenuNavStyles = {
+    display: "flex",
+    flexDirection: "column",
+    padding: "1rem",
+  };
+
+  // Mobile menu buttons container
+  const mobileMenuButtonsStyles = {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.75rem",
+    marginTop: "1rem",
+  };
+
+  // Modal overlay
+  const modalOverlayStyles = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 50,
+  };
+
+  // Modal content
+  const modalContentStyles = {
+    position: "relative",
+    width: "100%",
+    maxWidth: "28rem",
+    backgroundColor: "#ffffff",
+    borderRadius: "0.5rem",
+    padding: "2rem",
+    margin: "1rem",
+    boxShadow: "0 0 1rem rgba(0, 0, 0, 0.2)",
+  };
+
+  // Modal close button
+  const modalCloseButtonStyles = {
+    position: "absolute",
+    top: "0.5rem",
+    right: "0.5rem",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    color: "#1e293b",
+  };
+
+  // Alert container
+  const alertContainerStyles = {
+    position: "fixed",
+    top: "1rem",
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 50,
+  };
+
   return (
-    <header
-      className={`fixed h-24 top-0 py-1 z-50 w-full bg-transparent dark:bg-darklight transition-all ${
-        sticky
-          ? "shadow-lg dark:shadow-darkmd bg-white dark:bg-darklight"
-          : "shadow-none"
-      }`}
-    >
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md flex items-center justify-between lg:px-4 px-6 py-6">
-        <Logo />
-        <ul className="hidden lg:flex flex-grow items-center justify-center space-x-6">
+    <header style={headerStyles}>
+      <div style={containerStyles}>
+        <div style={logoContainerStyles}>
+          <Logo
+            style={{ height: "100%", width: "auto", objectFit: "contain" }}
+          />
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav style={navStyles}>
           {headerData.map((item, index) => (
-            <HeaderLink key={index} item={item} />
+            <HeaderLink
+              key={index}
+              item={item}
+              style={{
+                fontSize: "0.9375rem",
+                padding: "0.5rem 1rem",
+                color: "#1e293b",
+                textDecoration: "none",
+                borderRadius: "0.25rem",
+                transition: "background-color 0.2s",
+                ":hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.05)",
+                },
+              }}
+            />
           ))}
-        </ul>
-        <div className="flex items-center space-x-4">
+        </nav>
+
+        {/* Right Controls */}
+        <div style={controlsStyles}>
+          {/* Theme Toggle */}
           <button
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="flex h-8 w-8 items-center justify-center text-body-color duration-300 dark:text-white"
+            style={themeButtonStyles}
           >
-            <svg
-              viewBox="0 0 16 16"
-              className={`hidden h-6 w-6 dark:block ${
-                !sticky && pathUrl === "/" && "text-white"
-              }`}
-            >
-              <path
-                d="M4.50663 3.2267L3.30663 2.03337L2.36663 2.97337L3.55996 4.1667L4.50663 3.2267ZM2.66663 7.00003H0.666626V8.33337H2.66663V7.00003ZM8.66663 0.366699H7.33329V2.33337H8.66663V0.366699V0.366699ZM13.6333 2.97337L12.6933 2.03337L11.5 3.2267L12.44 4.1667L13.6333 2.97337ZM11.4933 12.1067L12.6866 13.3067L13.6266 12.3667L12.4266 11.1734L11.4933 12.1067ZM13.3333 7.00003V8.33337H15.3333V7.00003H13.3333ZM7.99996 3.6667C5.79329 3.6667 3.99996 5.46003 3.99996 7.6667C3.99996 9.87337 5.79329 11.6667 7.99996 11.6667C10.2066 11.6667 12 9.87337 12 7.6667C12 5.46003 10.2066 3.6667 7.99996 3.6667ZM7.33329 14.9667H8.66663V13H7.33329V14.9667ZM2.36663 12.36L3.30663 13.3L4.49996 12.1L3.55996 11.16L2.36663 12.36Z"
-                fill="#FFFFFF"
-              />
-            </svg>
-            <svg
-              viewBox="0 0 23 23"
-              className={`h-8 w-8 text-dark dark:hidden ${
-                !sticky && pathUrl === "/" && "text-white"
-              }`}
-            >
-              <path d="M16.6111 15.855C17.591 15.1394 18.3151 14.1979 18.7723 13.1623C16.4824 13.4065 14.1342 12.4631 12.6795 10.4711C11.2248 8.47905 11.0409 5.95516 11.9705 3.84818C10.8449 3.9685 9.72768 4.37162 8.74781 5.08719C5.7759 7.25747 5.12529 11.4308 7.29558 14.4028C9.46586 17.3747 13.6392 18.0253 16.6111 15.855Z" />
-            </svg>
+            <Icon icon="ph:moon" style={{ fontSize: "1.25rem" }} />
           </button>
-          <Link
-            href="#"
-            className="hidden lg:block bg-gradient-to-r from-[#6A0D1B] to-[#420516] text-white px-4 py-2 rounded-lg 
-              hover:brightness-110 transition-all duration-300"
-            onClick={() => {
-              setIsSignInOpen(true);
-            }}
-          >
-            Sign In
-          </Link>
 
-          {isSignInOpen && (
-            <div
-              ref={signInRef}
-              className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50 !m-0"
-            >
-              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white px-8 py-14 text-center dark:bg-darklight">
-                <button
-                  onClick={() => setIsSignInOpen(false)}
-                  className=" hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute -top-5 -right-3 mr-8 mt-8"
-                  aria-label="Close Sign In Modal"
-                >
-                  <Icon
-                    icon="ic:round-close"
-                    className="text-2xl dark:text-white"
-                  />
-                </button>
-                <Signin
-                  signInOpen={(value: boolean) => setIsSignInOpen(value)}
-                />
-              </div>
+          {/* Desktop Auth Buttons */}
+          {!isMobileView && (
+            <>
+              <Link
+                href="#"
+                style={authButtonStyles}
+                onClick={() => setIsSignInOpen(true)}
+              >
+                Sign In
+              </Link>
+              <Link
+                href="#"
+                style={authButtonStyles}
+                onClick={() => setIsSignUpOpen(true)}
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
+
+          {/* Mobile/Tablet Compact Auth Buttons */}
+          {isMobileView && (
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              <button
+                style={compactAuthButtonStyles}
+                onClick={() => setIsSignInOpen(true)}
+              >
+                Sign In
+              </button>
+              <button
+                style={secondaryAuthButtonStyles}
+                onClick={() => setIsSignUpOpen(true)}
+              >
+                Sign Up
+              </button>
             </div>
           )}
-          <Link
-            href="#"
-            className="hidden lg:block bg-gradient-to-r from-[#6A0D1B] to-[#420516] text-white px-4 py-2 rounded-lg 
-             hover:brightness-110 transition-all duration-300"
-            onClick={() => {
-              setIsSignUpOpen(true);
-            }}
-          >
-            Sign Up
-          </Link>
-          {isSignUpOpen && (
-            <div
-              ref={signUpRef}
-              className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50 !m-0"
-            >
-              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white px-8 py-14 text-center dark:bg-darklight">
-                <button
-                  onClick={() => setIsSignUpOpen(false)}
-                  className=" hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute -top-5 -right-3 mr-8 mt-8"
-                  aria-label="Close Sign In Modal"
-                >
-                  <Icon
-                    icon="ic:round-close"
-                    className="text-2xl dark:text-white"
-                  />
-                </button>
-                <SignUp
-                  signUpOpen={(value: boolean) => setIsSignUpOpen(value)}
-                />
-              </div>
-            </div>
-          )}
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setNavbarOpen(!navbarOpen)}
-            className="block lg:hidden p-2 rounded-lg"
-            aria-label="Toggle mobile menu"
+            style={mobileMenuButtonStyles}
+            aria-label="Toggle menu"
           >
-            <span className="block w-6 h-0.5 bg-black dark:bg-white"></span>
-            <span className="block w-6 h-0.5 bg-black dark:bg-white mt-1.5"></span>
-            <span className="block w-6 h-0.5 bg-black dark:bg-white mt-1.5"></span>
+            <Icon
+              icon={navbarOpen ? "ic:round-close" : "ci:hamburger"}
+              style={{ fontSize: "1.25rem" }}
+            />
           </button>
         </div>
       </div>
-      {navbarOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40" />
-      )}
 
-      <div
-        ref={mobileMenuRef}
-        className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white dark:bg-darkmode shadow-lg transform transition-transform duration-300 max-w-xs ${
-          navbarOpen ? "translate-x-0" : "translate-x-full"
-        } z-50`}
-      >
-        <div className="flex items-center justify-between p-4">
-          <h2 className="text-lg font-bold text-midnight_text dark:text-white">
-            Menu
-          </h2>
+      {/* Mobile Menu */}
+      <div style={mobileMenuStyles} ref={mobileMenuRef}>
+        <div style={mobileMenuHeaderStyles}>
+          <h2 style={mobileMenuTitleStyles}>Menu</h2>
           <button
             onClick={() => setNavbarOpen(false)}
-            aria-label="Close mobile menu"
+            style={mobileMenuCloseButtonStyles}
+            aria-label="Close menu"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="dark:text-white"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <Icon icon="ic:round-close" style={{ fontSize: "1.25rem" }} />
           </button>
         </div>
-        <nav className="flex flex-col items-start p-4">
+        <div style={mobileMenuNavStyles}>
           {headerData.map((item, index) => (
-            <MobileHeaderLink key={index} item={item} />
+            <MobileHeaderLink
+              key={index}
+              item={item}
+              style={{
+                padding: "0.75rem 0",
+                color: "#1e293b",
+                textDecoration: "none",
+                fontSize: "0.9375rem",
+                borderBottom: "1px solid #e2e8f0",
+              }}
+            />
           ))}
-          <div className="mt-4 flex flex-col space-y-4 w-full">
-            <Link
-              href="#"
-              className="bg-primary text-dark px-4 py-2 rounded-lg hover:bg-blue-700"
+          <div style={mobileMenuButtonsStyles}>
+            <button
+              style={compactAuthButtonStyles}
               onClick={() => {
                 setIsSignInOpen(true);
+                setNavbarOpen(false);
               }}
             >
               Sign In
-            </Link>
-
-            <Link
-              href="#"
-              className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            </button>
+            <button
+              style={secondaryAuthButtonStyles}
               onClick={() => {
                 setIsSignUpOpen(true);
                 setNavbarOpen(false);
               }}
             >
               Sign Up
-            </Link>
+            </button>
           </div>
-        </nav>
+        </div>
       </div>
-      {/* Successsful Login Alert */}
-      <div
-        className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-          authDialog?.isSuccessDialogOpen == true ? "block" : "hidden"
-        }`}
-      >
-        <SuccessfullLogin />
-      </div>
-      {/* Failed Login Alert */}
-      <div
-        className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-          authDialog?.isFailedDialogOpen == true ? "block" : "hidden"
-        }`}
-      >
-        <FailedLogin />
-      </div>
-      {/* User registration Alert */}
-      <div
-        className={`fixed top-6 end-1/2 translate-x-1/2 z-50 ${
-          authDialog?.isUserRegistered == true ? "block" : "hidden"
-        }`}
-      >
-        <UserRegistered />
+
+      {/* Sign In Modal */}
+      {isSignInOpen && (
+        <div style={modalOverlayStyles}>
+          <div style={modalContentStyles} ref={signInRef}>
+            <button
+              onClick={() => setIsSignInOpen(false)}
+              style={modalCloseButtonStyles}
+              aria-label="Close modal"
+            >
+              <Icon icon="ic:round-close" style={{ fontSize: "1.5rem" }} />
+            </button>
+            <Signin signInOpen={(value: boolean) => setIsSignInOpen(value)} />
+          </div>
+        </div>
+      )}
+
+      {/* Sign Up Modal */}
+      {isSignUpOpen && (
+        <div style={modalOverlayStyles}>
+          <div style={modalContentStyles} ref={signUpRef}>
+            <button
+              onClick={() => setIsSignUpOpen(false)}
+              style={modalCloseButtonStyles}
+              aria-label="Close modal"
+            >
+              <Icon icon="ic:round-close" style={{ fontSize: "1.5rem" }} />
+            </button>
+            <SignUp signUpOpen={(value: boolean) => setIsSignUpOpen(value)} />
+          </div>
+        </div>
+      )}
+
+      {/* Auth Dialogs */}
+      <div style={alertContainerStyles}>
+        {authDialog?.isSuccessDialogOpen && <SuccessfullLogin />}
+        {authDialog?.isFailedDialogOpen && <FailedLogin />}
+        {authDialog?.isUserRegistered && <UserRegistered />}
       </div>
     </header>
   );

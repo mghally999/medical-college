@@ -51,7 +51,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
       </Link>
       {submenuOpen && (
         <div
-          className="absolute py-2 left-0 mt-0.5 top-8 w-60 bg-white dark:bg-darklight shadow-lg dark:shadow-darkmd rounded-lg"
+          className="absolute py-2 left-0 mt-0.5 top-8 w-60 bg-white !bg-white shadow-lg rounded-lg"
           data-aos="fade-up"
           data-aos-duration="300"
         >

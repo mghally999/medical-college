@@ -96,7 +96,7 @@ export default function RootLayout({
               storageKey="csmedical-theme"
             >
               <Aoscompo>
-                {/* <Header /> */}
+                <Header />
                 <NextTopLoader color="#2F73F2" height={3} showSpinner={false} />
                 {children}
                 <Footer />

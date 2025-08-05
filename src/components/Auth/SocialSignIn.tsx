@@ -1,7 +1,6 @@
 import React from "react";
 import { signIn } from "next-auth/react";
 
-
 const SocialSignIn = () => {
   const handleGoogleSignIn = async () => {
     await signIn("google");
@@ -14,7 +13,7 @@ const SocialSignIn = () => {
       <div className="flex gap-4">
         <button
           onClick={handleGoogleSignIn}
-          className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-solid hover:bg-stroke border-stroke p-3.5 text-dark duration-200 ease-in dark:border-dark_border dark:text-white dark:hover:bg-primary/10 hover:!bg-primary/10"
+          className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-solid hover:bg-stroke border-stroke p-3.5 !text-black duration-200 ease-in hover:!bg-primary/10 dark:border-dark_border"
         >
           Sign In
           <svg
@@ -57,7 +56,7 @@ const SocialSignIn = () => {
 
         <button
           onClick={handleGithubSignIn}
-          className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-solid hover:bg-stroke border-stroke p-3.5 text-dark duration-200 ease-in dark:border-dark_border dark:text-white dark:hover:bg-primary/10 hover:bg-primary/10"
+          className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-solid hover:bg-stroke border-stroke p-3.5 !text-black duration-200 ease-in hover:!bg-primary/10 dark:border-dark_border"
         >
           Sign In
           <svg

@@ -1,27 +1,37 @@
+"use client";
+
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Logo: React.FC = () => {
+interface LogoProps {
+  className?: string;
+}
+
+const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <Link href="/">
-      <Image
-        src="/images/logo/logo.png"
-        alt="logo"
-        width={150}
-        height={50}
-        // style={{ width: "auto", height: "auto" }}
-        quality={100}
-        className="dark:hidden"
-      />
-      <Image
-        src="/images/logo/logo-white.png"
-        alt="logo"
-        width={150}
-        height={50}
-        // style={{ width: "auto", height: "auto" }}
-        quality={100}
-        className="dark:block hidden"
-      />
+    <Link href="/" className={`block ${className || ""}`}>
+      <span className="relative block h-full w-auto">
+        {/* Light Logo */}
+        <Image
+          src="/images/logo/logo.png"
+          alt="Logo"
+          width={150}
+          height={50}
+          quality={100}
+          className="dark:hidden"
+        />
+
+        {/* Dark Logo */}
+        <Image
+          src="/images/logo/logo-white.png"
+          alt="Logo"
+          width={150}
+          height={50}
+          quality={100}
+          className="hidden dark:block"
+        />
+      </span>
     </Link>
   );
 };

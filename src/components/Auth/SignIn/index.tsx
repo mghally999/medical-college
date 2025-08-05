@@ -4,22 +4,20 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import SocialSignIn from "../SocialSignIn";
-import Logo from "@/components/Layout/Header/Logo"
+import Logo from "@/components/Layout/Header/Logo";
 import Loader from "@/components/Common/Loader";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import AuthDialogContext from "@/app/context/AuthDialogContext";
 
-
-const Signin = ({signInOpen}:{signInOpen?:any}) => {
+const Signin = ({ signInOpen }: { signInOpen?: any }) => {
   const { data: session } = useSession();
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("admin123");
   const [error, setError] = useState("");
   const authDialog = useContext(AuthDialogContext);
 
-
   const handleSubmit = async (e: any) => {
-    const notify = () => toast('Here is your toast.');
+    const notify = () => toast("Here is your toast.");
     e.preventDefault();
     const result = await signIn("credentials", {
       redirect: false,
@@ -31,27 +29,21 @@ const Signin = ({signInOpen}:{signInOpen?:any}) => {
       // Handle successful sign-in
       setError(result.error);
     }
-    if(result?.status === 200){
-       setTimeout(() => {
+    if (result?.status === 200) {
+      setTimeout(() => {
         signInOpen(false);
-       }, 1200);
+      }, 1200);
       authDialog?.setIsSuccessDialogOpen(true);
       setTimeout(() => {
         authDialog?.setIsSuccessDialogOpen(false);
       }, 1100);
-    }else{
+    } else {
       authDialog?.setIsFailedDialogOpen(true);
       setTimeout(() => {
         authDialog?.setIsFailedDialogOpen(false);
       }, 1100);
     }
   };
-
-
-  
-
-
-
 
   return (
     <>
@@ -77,7 +69,7 @@ const Signin = ({signInOpen}:{signInOpen?:any}) => {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded-md border placeholder:text-gray-400  border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
+            className="w-full rounded-md border placeholder:text-gray-400 border-border border-solid bg-transparent px-5 py-3 text-base !text-black outline-none transition focus:border-primary focus-visible:shadow-none"
           />
         </div>
         <div className="mb-[22px]">
@@ -87,7 +79,7 @@ const Signin = ({signInOpen}:{signInOpen?:any}) => {
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-md border border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
+            className="w-full rounded-md border placeholder:text-gray-400 border-border border-solid bg-transparent px-5 py-3 text-base !text-black outline-none transition focus:border-primary focus-visible:shadow-none"
           />
         </div>
         <div className="mb-9">
@@ -98,7 +90,6 @@ const Signin = ({signInOpen}:{signInOpen?:any}) => {
             Sign In
             {/* {loading && <Loader />} */}
           </button>
-      
         </div>
       </form>
 
