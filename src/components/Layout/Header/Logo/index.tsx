@@ -18,22 +18,12 @@ const Logo: React.FC<LogoProps> = ({ className, style, ...rest }) => {
       {...rest}
     >
       <div className="relative w-[150px] h-[50px]">
-        {/* Light Mode Logo */}
         <Image
-          src="/images/logo/logo.png"
-          alt="Logo"
+          src="/images/logo/logo.png" // ✅ Always use this
+          alt="CS Medical Logo"
           fill
           quality={100}
-          className="dark:hidden object-contain"
-        />
-
-        {/* Dark Mode Logo */}
-        <Image
-          src="/images/logo/logo-white.png"
-          alt="Logo"
-          fill
-          quality={100}
-          className="hidden dark:block object-contain"
+          className="object-contain"
         />
       </div>
     </Link>
