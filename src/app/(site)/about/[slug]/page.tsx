@@ -15,18 +15,11 @@ interface AboutPageData {
   list?: string[];
 }
 
-interface AboutSubPageProps {
-  params: {
-    slug: string;
-  };
-}
+export default function Page({ params }: { params: { slug: string } }) {
+  // Directly destructure params - no need for React.use() in this case
+  const { slug } = params;
 
-export default function AboutSubPage({ params }: AboutSubPageProps) {
-  // Properly typed unwrap of params promise
-  const unwrappedParams = React.use<{ slug: string }>(params as any);
-  const pageData: AboutPageData | undefined = aboutPagesData.find(
-    (page) => page.slug === unwrappedParams.slug
-  );
+  const pageData = aboutPagesData.find((page) => page.slug === slug);
   if (!pageData) return notFound();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,7 +35,7 @@ export default function AboutSubPage({ params }: AboutSubPageProps) {
 
   return (
     <div ref={containerRef} className="about-subpage custom-linear-blue-top">
-      {/* Immersive Hero Section */}
+      {/* Hero Section */}
       <motion.div className="hero-container" style={{ y: yBg }}>
         <Image
           src={pageData.image}
@@ -61,10 +54,7 @@ export default function AboutSubPage({ params }: AboutSubPageProps) {
         <motion.div className="overlay" style={{ opacity: opacityBg }} />
         <motion.h1
           className="hero-title bottom-aligned"
-          style={{
-            scale: scaleTitle,
-            y: yTitle,
-          }}
+          style={{ scale: scaleTitle, y: yTitle }}
         >
           {pageData.title.split(" ").map((word, i) => (
             <motion.span
@@ -79,18 +69,14 @@ export default function AboutSubPage({ params }: AboutSubPageProps) {
         </motion.h1>
       </motion.div>
 
-      {/* Interactive Content Section */}
+      {/* Content Section */}
       <div className="content-wrapper custom-linear-white-top">
-        {/* Floating 3D Elements */}
         <div className="floating-elements">
           {[1, 2, 3].map((i) => (
             <motion.div
               key={i}
               className={`floating-element element-${i}`}
-              animate={{
-                y: [0, 15, 0],
-                rotate: [0, 5, 0],
-              }}
+              animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
               transition={{
                 duration: 8 + i * 2,
                 repeat: Infinity,
@@ -100,25 +86,24 @@ export default function AboutSubPage({ params }: AboutSubPageProps) {
           ))}
         </div>
 
-        {/* Dynamic Content Blocks */}
+        {/* Dynamic paragraphs */}
         <div className="content-grid">
-          {pageData.content &&
-            pageData.content.map((paragraph, idx) => (
-              <motion.div
-                className="content-block"
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1, duration: 0.6 }}
-                viewport={{ once: true, margin: "-100px" }}
-              >
-                <div className="content-indicator">{idx + 1}</div>
-                <p className="content-text">{paragraph}</p>
-              </motion.div>
-            ))}
+          {pageData.content?.map((paragraph, idx) => (
+            <motion.div
+              className="content-block"
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <div className="content-indicator">{idx + 1}</div>
+              <p className="content-text">{paragraph}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Interactive List */}
+        {/* Optional list */}
         {pageData.list && (
           <motion.ul
             className="interactive-list"
@@ -129,21 +114,19 @@ export default function AboutSubPage({ params }: AboutSubPageProps) {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: {
-                  staggerChildren: 0.1,
-                },
+                transition: { staggerChildren: 0.1 },
               },
             }}
           >
             {pageData.list.map((item, idx) => (
               <motion.li
                 key={idx}
+                className="list-item"
                 variants={{
                   hidden: { opacity: 0, x: -20 },
                   visible: { opacity: 1, x: 0 },
                 }}
                 whileHover={{ scale: 1.02 }}
-                className="list-item"
               >
                 <div className="list-bullet">
                   <div className="bullet-inner" />
@@ -155,7 +138,7 @@ export default function AboutSubPage({ params }: AboutSubPageProps) {
         )}
       </div>
 
-      {/* Decorative Elements */}
+      {/* Particle Background */}
       <div className="decorative-elements">
         <div className="particle-field">
           {[...Array(30)].map((_, i) => (
