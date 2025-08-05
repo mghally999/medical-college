@@ -19,7 +19,7 @@ const Logo: React.FC<LogoProps> = ({ className, style, ...rest }) => {
     >
       <div className="relative w-[150px] h-[50px]">
         <Image
-          src="/public/images/logo/logo.png" // ✅ Always use this
+          src="/images/logo/logo.png"
           alt="CS Medical Logo"
           fill
           quality={100}
