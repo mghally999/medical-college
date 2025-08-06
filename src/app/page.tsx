@@ -8,6 +8,7 @@ import DoctorTeam from "@/components/Sharedcomponent/DoctorTeam";
 import Testimonials from "@/components/Sharedcomponent/Testimonial";
 import Blog from "@/components/Sharedcomponent/Blog";
 import ContactForm from "@/components/Sharedcomponent/ContactForm";
+import AboutSection from "@/components/Sharedcomponent/Learn";
 export const metadata: Metadata = {
   title: "CS Medical College",
 };
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <MedicineService />
       <Service isSpace={true} />
+      <AboutSection />
       <Support />
       <DoctorTeam />
       <Testimonials />

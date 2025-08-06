@@ -1,79 +1,100 @@
+// data/headerData.ts
 import { HeaderItem } from "@/types/menu";
 
 export const headerData: HeaderItem[] = [
   {
+    id: 1,
     label: "Home",
     href: "/",
   },
   {
+    id: 2,
     label: "About Us",
     href: "/about",
     submenu: [
-      { label: "Our Story", href: "/about" }, // default page
-      { label: "Who We Are", href: "/about/who-we-are" },
-      { label: "Our Mission", href: "/about/our-mission" },
-      { label: "Our Values", href: "/about/our-values" },
+      { id: 21, label: "Our Story", href: "/about" },
+      { id: 22, label: "Who We Are", href: "/about/who-we-are" },
+      { id: 23, label: "Our Mission", href: "/about/our-mission" },
+      { id: 24, label: "Our Values", href: "/about/our-values" },
       {
+        id: 25,
         label: "Our Accreditation & Recognitions",
         href: "/about/accreditation",
       },
-      { label: "Why CSEI Medical College?", href: "/about/why-csei" },
+      { id: 26, label: "Why CSEI Medical College?", href: "/about/why-csei" },
     ],
   },
   {
+    id: 3,
     label: "Programs",
     href: "/programs",
     submenu: [
       {
+        id: 31,
         label: "Overview",
         href: "/programs",
       },
       {
+        id: 32,
         label: "Nursing Programs",
         href: "#",
         submenu: [
           {
+            id: 321,
             label: "Registered Nursing - Bachelor of Science (RN - BSN)",
             href: "/programs/nursing/rn-bsn",
           },
           {
+            id: 322,
             label: "Assistant Nursing (American)",
             href: "/programs/nursing/assistant-nursing",
           },
         ],
       },
       {
+        id: 33,
         label: "Health and Social Care",
         href: "#",
         submenu: [
           {
+            id: 331,
             label: "Level 3 Diploma in Health and Social Care",
             href: "/programs/health-social-care/level-3",
           },
           {
+            id: 332,
             label: "Level 4 Diploma in Health and Social Care",
             href: "/programs/health-social-care/level-4",
           },
           {
+            id: 333,
             label: "Level 5 Diploma in Health and Social Care",
             href: "/programs/health-social-care/level-5",
           },
           {
+            id: 334,
             label: "Professional Certificate in Health and Social Care",
             href: "/programs/health-social-care/professional",
           },
         ],
       },
       {
+        id: 34,
         label: "One Day Certification Courses",
         href: "#",
         submenu: [
-          { label: "Basic Life Support (BLS)", href: "/programs/one-day/bls" },
           {
+            id: 341,
+            label: "Basic Life Support (BLS)",
+            href: "/programs/one-day/bls",
+          },
+          {
+            id: 342,
             label: "Pain Management (PM)",
             href: "/programs/one-day/pain-management",
           },
           {
+            id: 343,
             label: "Infection Control (IC)",
             href: "/programs/one-day/infection-control",
           },
@@ -82,47 +103,62 @@ export const headerData: HeaderItem[] = [
     ],
   },
   {
+    id: 4,
     label: "Apply Now",
     href: "#",
     submenu: [
-      { label: "Admissions Overview", href: "/admission" },
-      { label: "Apply Now", href: "/admission/apply-now" },
-      { label: "Admission Process", href: "/admission/admission-process" },
-      { label: "Arrival Support", href: "/admission/arrival-support" },
+      { id: 41, label: "Admissions Overview", href: "/admission" },
+      { id: 42, label: "Apply Now", href: "/admission/apply-now" },
       {
+        id: 43,
+        label: "Admission Process",
+        href: "/admission/admission-process",
+      },
+      { id: 44, label: "Arrival Support", href: "/admission/arrival-support" },
+      {
+        id: 45,
         label: "International Students",
         href: "/admission/international-students",
       },
-      { label: "Tuition and Fees", href: "/admission/tuition-fees" },
+      { id: 46, label: "Tuition and Fees", href: "/admission/tuition-fees" },
       {
+        id: 47,
         label: "Financial Aid & Scholarships",
         href: "/admission/financial-aid-scholarships",
       },
-      { label: "Student Voice", href: "/admission/student-voice" },
+      { id: 48, label: "Student Voice", href: "/admission/student-voice" },
     ],
   },
   {
+    id: 5,
     label: "Placements",
     href: "#",
     submenu: [
-      { label: "Placement Overview", href: "/placements" },
-      { label: "Objective", href: "/placements/objectives" },
-      { label: "Briefing", href: "/placements/briefing" },
-      { label: "Why Recruit CSEI Students", href: "/placements/why-csei" },
-      { label: "Our Services", href: "/placements/services" },
+      { id: 51, label: "Placement Overview", href: "/placements" },
+      { id: 52, label: "Objective", href: "/placements/objectives" },
+      { id: 53, label: "Briefing", href: "/placements/briefing" },
       {
+        id: 54,
+        label: "Why Recruit CSEI Students",
+        href: "/placements/why-csei",
+      },
+      { id: 55, label: "Our Services", href: "/placements/services" },
+      {
+        id: 56,
         label: "Student Satisfaction",
         href: "/placements/highlights/student-satisfaction",
       },
       {
+        id: 57,
         label: "Opportunities Generated",
         href: "/placements/highlights/opportunities-generated",
       },
-      { label: "Our Industry Partners", href: "/placements/partners" },
-      { label: "Partner With Us", href: "/placements/partner-with-us" },
+      { id: 58, label: "Our Industry Partners", href: "/placements/partners" },
+      { id: 59, label: "Partner With Us", href: "/placements/partner-with-us" },
     ],
   },
   {
+    id: 6,
     label: "Contact Us",
     href: "/contact-us",
   },

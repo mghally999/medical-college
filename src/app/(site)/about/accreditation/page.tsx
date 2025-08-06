@@ -90,24 +90,18 @@ const AccreditationIntro: React.FC = () => {
             alignItems: "center",
           }}
         >
+          <LogoCard src="/images/logo/KHDA-logo.png" alt="KHDA Accredited" />
+          <LogoCard src="/images/logo/OTHM-logo.png" alt="OTHM Accredited" />
           <LogoCard
-            src="/assets/img/logos/KHDA-logo.png"
-            alt="KHDA Accredited"
-          />
-          <LogoCard
-            src="/assets/img/logos/OTHM-logo.png"
-            alt="OTHM Accredited"
-          />
-          <LogoCard
-            src="/assets/img/logos/university-bolton.png"
+            src="/images/logo/university-bolton.png"
             alt="University of Bolton"
           />
           <LogoCard
-            src="/assets/img/logos/medical-college.png"
+            src="/images/logo/medical-college.png"
             alt="Medical College"
           />
           <LogoCard
-            src="/assets/img/logos/northwood-university.jpeg"
+            src="/images/logo/northwood-university.jpeg"
             alt="Northwood University"
           />
         </motion.div>

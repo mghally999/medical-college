@@ -326,7 +326,7 @@ const Header: React.FC = () => {
         <nav style={navStyles}>
           {headerData.map((item: HeaderItem) => (
             <HeaderLink
-              key={item.id}
+              key={item?.id}
               item={item}
               style={{
                 fontSize: "0.9375rem",
@@ -343,7 +343,7 @@ const Header: React.FC = () => {
         {/* Right Controls */}
         <div style={controlsStyles}>
           {/* Theme Toggle */}
-          <button
+          {/* <button
             aria-label="Toggle theme"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             style={themeButtonStyles}
@@ -352,7 +352,7 @@ const Header: React.FC = () => {
               icon={theme === "dark" ? "ph:sun" : "ph:moon"}
               style={{ fontSize: "1.25rem" }}
             />
-          </button>
+          </button> */}
 
           {/* Desktop Auth Buttons */}
           {!isMobileView && (

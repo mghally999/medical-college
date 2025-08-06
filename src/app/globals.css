@@ -70,3 +70,8 @@ section {
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
 }
+
+.custom-padding {
+  padding-top: 100px !important;
+  padding-bottom: 50px !important;
+}

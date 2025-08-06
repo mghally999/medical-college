@@ -59,7 +59,7 @@ const aboutPagesData = [
   },
   {
     slug: "why-csei",
-    title: "Why Choose CSEI?",
+    title: "Why Choose CS Medical College?",
     image: "/images/about/why-csei.png",
     list: [
       "UK Ofqual-regulated and KHDA-approved qualifications",
