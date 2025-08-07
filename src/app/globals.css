@@ -80,3 +80,13 @@ section {
   padding-top: 200px !important;
   padding-bottom: 50px !important;
 }
+
+.mega-menu-link {
+  color: #4a5568;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mega-menu-link:hover {
+  color: #6a0d1b;
+}

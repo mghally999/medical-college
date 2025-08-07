@@ -12,13 +12,13 @@ import { TuitionFees } from "@/components/Programs/TuitionFees";
 
 type ProgramType = {
   professional: boolean;
-  overview: object;
-  entryRequirements: object;
-  qualificationStructureText: object;
-  qualificationUnits: object;
-  courseObjectives?: object;
-  assessmentVerification: object;
-  careerOpportunities: object;
+  overview: string;
+  entryRequirements: string;
+  qualificationStructureText: string;
+  qualificationUnits: string[];
+  courseObjectives?: string;
+  assessmentVerification: string;
+  careerOpportunities: string;
 };
 
 type StickyTabsSectionProps = {
@@ -78,7 +78,11 @@ export default function StickyTabsSection({ program }: StickyTabsSectionProps) {
       Component: CareerOpportunities,
       props: { data: program.careerOpportunities },
     },
-    { id: 8, Component: TuitionFees, props: { program } },
+    {
+      id: 8,
+      Component: TuitionFees,
+      props: { program },
+    },
   ];
 
   useEffect(() => {
@@ -166,11 +170,12 @@ export default function StickyTabsSection({ program }: StickyTabsSectionProps) {
               data-section-id={id}
               className="content-section"
             >
-              <Component {...props} />
+              <Component {...(props as any)} />
             </div>
           ))}
         </div>
       </div>
+
       <style jsx>{`
         .sticky-section {
           padding: 4rem 1rem;

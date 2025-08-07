@@ -13,12 +13,22 @@ import ApplicationFormModal from "@/components/Common/ApplicationFormModal";
 import allPrograms from "@/app/data/allPrograms";
 
 type ProgramType = {
+  id: string;
   title: string;
   imageSrc: string;
   professional: boolean;
   category: string;
   level: string;
   href: string;
+  duration: string;
+  deliveryMode: string;
+  price: string;
+  overview: string;
+  entryRequirements: string;
+  qualificationStructureText: string;
+  qualificationUnits: string[];
+  faqs: { question: string; answer: string }[];
+  layout?: string;
   [key: string]: any;
 };
 
@@ -36,7 +46,11 @@ export default function ProgramPage(): JSX.Element {
         (item) => item.href?.toLowerCase() === path
       );
 
-      setPageItem(program || null);
+      if (program) {
+        setPageItem(program as any);
+      } else {
+        setPageItem(null);
+      }
     }
   }, [slug]);
 
@@ -57,6 +71,7 @@ export default function ProgramPage(): JSX.Element {
           alt={pageItem.title}
           fill
           className="object-cover object-center opacity-50"
+          priority
         />
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6">
           <motion.h1
@@ -85,6 +100,7 @@ export default function ProgramPage(): JSX.Element {
                 width={180}
                 height={80}
                 className="object-contain"
+                priority
               />
             </div>
           </motion.div>
@@ -104,6 +120,10 @@ export default function ProgramPage(): JSX.Element {
               }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-900 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg flex items-center gap-3"
+              style={{
+                // Fix for the hover type error
+                transition: "all 0.3s ease",
+              }}
             >
               Apply Now
               <motion.span
@@ -120,14 +140,14 @@ export default function ProgramPage(): JSX.Element {
       {/* Highlights */}
       <section className="py-16 bg-gray-100 px-6">
         <div className="max-w-6xl mx-auto">
-          <ProgramHighlightsBox data={pageItem} layout="horizontal" />
+          <ProgramHighlightsBox data={pageItem} />
         </div>
       </section>
 
       {/* Sticky Tabs */}
       <section className="px-6">
         <div className="max-w-7xl mx-auto">
-          <StickyTabsSection program={pageItem} />
+          <StickyTabsSection program={pageItem as any} />
         </div>
       </section>
 

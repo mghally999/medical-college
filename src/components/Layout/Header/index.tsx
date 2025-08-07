@@ -401,15 +401,6 @@ const Header: React.FC = () => {
     padding: "0.5rem 0",
   };
 
-  const megaMenuLinkStyles: React.CSSProperties = {
-    color: "#4a5568",
-    textDecoration: "none",
-    transition: "color 0.2s",
-    ":hover": {
-      color: "#6A0D1B",
-    },
-  };
-
   const megaMenuIconStyles: React.CSSProperties = {
     color: "#6A0D1B",
     fontSize: "1rem",
@@ -479,7 +470,7 @@ const Header: React.FC = () => {
                           icon="ph:caret-right-fill"
                           style={megaMenuIconStyles}
                         />
-                        <span style={megaMenuLinkStyles}>{program.label}</span>
+                        <span className="mega-menu-link">{program.label}</span>
                       </Link>
                     ))
                   ) : (
@@ -495,7 +486,7 @@ const Header: React.FC = () => {
                         icon="ph:caret-right-fill"
                         style={megaMenuIconStyles}
                       />
-                      <span style={megaMenuLinkStyles}>Learn More</span>
+                      <span className="mega-menu-link">Learn More</span>
                     </Link>
                   )}
                 </div>
