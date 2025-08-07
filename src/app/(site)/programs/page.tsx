@@ -119,7 +119,7 @@ const programs = [
   {
     id: 7,
     title: "Basic Life Support (BLS)",
-    href: "/programs/one-day/bls",
+    href: "/programs/one-day-certification/bls",
     school: "Professional Development",
     category: "One Day Certification",
     level: "Certificate",
@@ -414,7 +414,7 @@ export default function ProgramsPage() {
 
         {/* Quick filters */}
         <div className="cosmic-quick-filters">
-          {/* <motion.button
+          <motion.button
             className={`cosmic-filter-btn ${
               activeFilter === "all" ? "active" : ""
             }`}
@@ -424,9 +424,9 @@ export default function ProgramsPage() {
           >
             <FiCompass className="filter-icon" />
             All Programs
-          </motion.button> */}
+          </motion.button>
 
-          {/* <motion.button
+          <motion.button
             className={`cosmic-filter-btn ${
               activeFilter === "professional" ? "active" : ""
             }`}
@@ -436,7 +436,7 @@ export default function ProgramsPage() {
           >
             <FiAward className="filter-icon" />
             Professional ({professionalCount})
-          </motion.button> */}
+          </motion.button>
         </div>
       </motion.header>
 
@@ -736,7 +736,7 @@ export default function ProgramsPage() {
         }
 
         .cosmic-main {
-          //   padding: 40px 0 80px;
+          padding: 40px 0 80px;
         }
 
         /* View mode toggle */

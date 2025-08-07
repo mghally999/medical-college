@@ -16,20 +16,28 @@ interface HeaderLinkProps {
   item: HeaderItem;
   style?: React.CSSProperties;
   className?: string;
+  isMegaMenu?: boolean;
 }
 
-const HeaderLink: React.FC<HeaderLinkProps> = ({ item, style, className }) => {
+const HeaderLink: React.FC<HeaderLinkProps> = ({
+  item,
+  style,
+  className,
+  isMegaMenu = false,
+}) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const path = usePathname();
 
   const handleMouseEnter = () => {
-    if (item.submenu?.length) {
+    if (item.submenu?.length && !isMegaMenu) {
       setSubmenuOpen(true);
     }
   };
 
   const handleMouseLeave = () => {
-    setSubmenuOpen(false);
+    if (!isMegaMenu) {
+      setSubmenuOpen(false);
+    }
   };
 
   const isActive =
@@ -37,7 +45,7 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({ item, style, className }) => {
 
   return (
     <li
-      className={`relative group`}
+      className="relative group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={style}
@@ -50,12 +58,17 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({ item, style, className }) => {
         target={item.newTab ? "_blank" : "_self"}
       >
         {item.label}
+
+        {/* ✅ Show arrow ONLY if it has submenu AND it is NOT a mega menu */}
         {item.submenu && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2em"
             height="1.2em"
             viewBox="0 0 24 24"
+            className={`transition-transform duration-200 ${
+              submenuOpen ? "rotate-180" : ""
+            }`}
           >
             <path
               fill="none"
@@ -69,7 +82,8 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({ item, style, className }) => {
         )}
       </Link>
 
-      {submenuOpen && item.submenu && (
+      {/* ✅ Render normal dropdown ONLY if not a mega menu */}
+      {submenuOpen && item.submenu && !isMegaMenu && (
         <div className="absolute left-0 top-full mt-2 w-60 bg-white shadow-lg rounded-lg z-50">
           {item.submenu.map((subItem) => (
             <Link

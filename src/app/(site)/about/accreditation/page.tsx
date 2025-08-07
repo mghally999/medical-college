@@ -55,7 +55,7 @@ const AccreditationIntro: React.FC = () => {
 
   return (
     <section
-      className="custom-padding relative custom-linear-white-top"
+      className="custom-padding-2 relative custom-linear-white-top"
       style={{
         background:
           "linear-gradient(359deg, #ffffff 0%, #dbeafe 25%, #86b3f7 50%, #3a5acb 75%, #0f1d56 100%)",

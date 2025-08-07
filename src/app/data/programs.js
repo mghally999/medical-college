@@ -1,37 +1,4 @@
 export const programs = [
-  // {
-  //   id: 1,
-  //   title: "Information Technology",
-  //   href: "/programs/information-technology/level-4",
-  //   school: "Computing Discipline",
-  //   category: "Information Technology",
-  //   level: "Level 4",
-  //   duration: 120,
-  //   imageSrc: "/images/coursesCards/information-technology-1.jpg",
-  //   professional: false,
-  // },
-  // {
-  //   id: 2,
-  //   title: "Information Technology",
-  //   href: "/programs/information-technology/level-5",
-  //   school: "Computing Discipline",
-  //   category: "Information Technology",
-  //   level: "Level 5",
-  //   duration: 120,
-  //   imageSrc: "/images/coursesCards/information-technology.png",
-  //   professional: false,
-  // },
-  // {
-  //   id: 3,
-  //   title: "Health & Social Care Management",
-  //   href: "/programs/health-social-care/level-3",
-  //   school: "Health Science Discipline",
-  //   category: "Health & Social Care Management",
-  //   level: "Level 3",
-  //   duration: 120,
-  //   imageSrc: "/images/coursesCards/health-science-1.png",
-  //   professional: false,
-  // },
   {
     id: 4,
     title: "Health & Social Care Management",
@@ -67,8 +34,6 @@ export const programs = [
     imageSrc: "/images/coursesCards/health-science-4.jpg",
     professional: true,
   },
-
-  // Culinary Arts & Tourism Discipline
   {
     id: 7,
     title: "Tourism & Hospitality",
@@ -91,30 +56,6 @@ export const programs = [
     imageSrc: "/images/coursesCards/tourism-hospitality-1.jpg",
     professional: false,
   },
-  // {
-  //   id: 9,
-  //   title: "Tourism & Hospitality",
-  //   href: "/programs/tourism-hospitality/level-6",
-  //   school: "Culinary Arts & Tourism Discipline",
-  //   category: "Tourism & Hospitality",
-  //   level: "Level 6",
-  //   duration: 120,
-  //   imageSrc: "/images/coursesCards/tourism-hospitality-2.jpg",
-  //   professional: false,
-  // },
-  // {
-  //   id: 10,
-  //   title: "Tourism & Hospitality",
-  //   href: "/programs/tourism-hospitality/level-7",
-  //   school: "Culinary Arts & Tourism Discipline",
-  //   category: "Tourism & Hospitality",
-  //   level: "Level 7",
-  //   duration: 120,
-  //   imageSrc: "/images/coursesCards/tourism-hospitality-3.jpg",
-  //   professional: false,
-  // },
-
-  // Professional Courses
   {
     id: 11,
     title: "Culinary Arts Professional",
@@ -199,19 +140,6 @@ export const programs = [
     imageSrc: "/images/coursesCards/culinary-arts-6.jpg",
     professional: true,
   },
-
-  // Business Discipline
-  // {
-  //   id: 18,
-  //   title: "Business Management",
-  //   href: "/programs/business-management/level-3",
-  //   school: "Business Discipline",
-  //   category: "Business Management",
-  //   level: "Level 3",
-  //   duration: 120,
-  //   imageSrc: "/images/coursesCards/business-management.jpg",
-  //   professional: false,
-  // },
   {
     id: 19,
     title: "Business Management",
@@ -224,14 +152,26 @@ export const programs = [
     professional: false,
   },
   {
-    id: 19,
+    id: 20,
     title: "Business Management",
-    href: "/programs/business-management/level-4",
+    href: "/programs/business-management/level-5",
     school: "Business Discipline",
     category: "Business Management",
     level: "Level 5",
     duration: 120,
     imageSrc: "/images/coursesCards/business-management-1.jpg",
     professional: false,
+  },
+  {
+    id: 21,
+    title: "RN to BSN",
+    credentialTitle: "Diploma in Nursing (RN to BSN)",
+    href: "/programs/nursing/rn-bsn",
+    school: "Health Science Discipline",
+    category: "Nursing",
+    level: "RN to BSN",
+    duration: 120,
+    imageSrc: "/images/coursesCards/nursing.jpg",
+    professional: true,
   },
 ];

@@ -37,7 +37,7 @@ export const headerData: HeaderItem[] = [
       {
         id: 32,
         label: "Nursing Programs",
-        href: "#",
+        href: "/programs/nursing", // Updated from "#"
         submenu: [
           {
             id: 321,
@@ -54,7 +54,7 @@ export const headerData: HeaderItem[] = [
       {
         id: 33,
         label: "Health and Social Care",
-        href: "#",
+        href: "/programs/health-social-care", // Updated from "#"
         submenu: [
           {
             id: 331,
@@ -81,22 +81,22 @@ export const headerData: HeaderItem[] = [
       {
         id: 34,
         label: "One Day Certification Courses",
-        href: "#",
+        href: "/programs/one-day", // Updated from "#"
         submenu: [
           {
             id: 341,
             label: "Basic Life Support (BLS)",
-            href: "/programs/one-day/bls",
+            href: "/programs/one-day-certification/bls",
           },
           {
             id: 342,
             label: "Pain Management (PM)",
-            href: "/programs/one-day/pain-management",
+            href: "/programs/one-day-certification/pain-management",
           },
           {
             id: 343,
             label: "Infection Control (IC)",
-            href: "/programs/one-day/infection-control",
+            href: "/programs/one-day-certification/infection-control",
           },
         ],
       },

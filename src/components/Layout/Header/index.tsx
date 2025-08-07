@@ -17,8 +17,8 @@ import AuthDialogContext from "@/app/context/AuthDialogContext";
 
 interface HeaderItem {
   id: number;
-  label: string; // was 'title'
-  href: string; // was 'path'
+  label: string;
+  href: string;
   newTab?: boolean;
   submenu?: HeaderItem[];
 }
@@ -31,16 +31,24 @@ const Header: React.FC = () => {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<number | null>(null);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
 
   const navbarRef = useRef<HTMLDivElement>(null);
   const signInRef = useRef<HTMLDivElement>(null);
   const signUpRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const megaMenuRef = useRef<HTMLDivElement>(null);
+  const megaMenuTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Check screen size for mobile/tablet view
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobileView(window.innerWidth <= 1061);
+      if (window.innerWidth <= 1061) {
+        setIsMegaMenuOpen(false);
+        setActiveMegaMenu(null);
+      }
     };
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
@@ -71,6 +79,14 @@ const Header: React.FC = () => {
     ) {
       setNavbarOpen(false);
     }
+    if (
+      megaMenuRef.current &&
+      !megaMenuRef.current.contains(event.target as Node) &&
+      isMegaMenuOpen
+    ) {
+      setIsMegaMenuOpen(false);
+      setActiveMegaMenu(null);
+    }
   };
 
   useEffect(() => {
@@ -79,16 +95,40 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
+      if (megaMenuTimerRef.current) {
+        clearTimeout(megaMenuTimerRef.current);
+      }
     };
-  }, [navbarOpen, isSignInOpen, isSignUpOpen]);
+  }, [navbarOpen, isSignInOpen, isSignUpOpen, isMegaMenuOpen]);
 
   useEffect(() => {
-    if (isSignInOpen || isSignUpOpen || navbarOpen) {
+    if (isSignInOpen || isSignUpOpen || navbarOpen || isMegaMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
-  }, [isSignInOpen, isSignUpOpen, navbarOpen]);
+  }, [isSignInOpen, isSignUpOpen, navbarOpen, isMegaMenuOpen]);
+
+  const handleMegaMenuEnter = (id: number) => {
+    if (megaMenuTimerRef.current) {
+      clearTimeout(megaMenuTimerRef.current);
+    }
+    setActiveMegaMenu(id);
+    setIsMegaMenuOpen(true);
+  };
+
+  const handleMegaMenuLeave = () => {
+    megaMenuTimerRef.current = setTimeout(() => {
+      setIsMegaMenuOpen(false);
+      setActiveMegaMenu(null);
+    }, 200);
+  };
+
+  const cancelMegaMenuLeave = () => {
+    if (megaMenuTimerRef.current) {
+      clearTimeout(megaMenuTimerRef.current);
+    }
+  };
 
   const authDialog = useContext(AuthDialogContext);
 
@@ -123,6 +163,7 @@ const Header: React.FC = () => {
     justifyContent: "space-between",
     padding: "0 1rem",
     height: "100%",
+    position: "relative",
   };
 
   // Logo container styles
@@ -313,6 +354,69 @@ const Header: React.FC = () => {
     zIndex: 50,
   };
 
+  // Mega Menu Styles
+  const megaMenuStyles: React.CSSProperties = {
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    width: "100%",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+    padding: "2rem",
+    display: isMegaMenuOpen ? "block" : "none",
+    zIndex: 40,
+    borderTop: "1px solid #e2e8f0",
+  };
+
+  const megaMenuGridStyles: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "2rem",
+    maxWidth: "1200px",
+    margin: "0 auto",
+  };
+
+  const megaMenuColumnStyles: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+  };
+
+  const megaMenuCategoryTitleStyles: React.CSSProperties = {
+    fontSize: "1.125rem",
+    fontWeight: 600,
+    color: "#6A0D1B",
+    marginBottom: "0.5rem",
+    paddingBottom: "0.5rem",
+    borderBottom: "1px solid #e2e8f0",
+  };
+
+  const megaMenuItemStyles: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    color: "#4a5568",
+    textDecoration: "none",
+    transition: "color 0.2s",
+    padding: "0.5rem 0",
+  };
+
+  const megaMenuLinkStyles: React.CSSProperties = {
+    color: "#4a5568",
+    textDecoration: "none",
+    transition: "color 0.2s",
+    ":hover": {
+      color: "#6A0D1B",
+    },
+  };
+
+  const megaMenuIconStyles: React.CSSProperties = {
+    color: "#6A0D1B",
+    fontSize: "1rem",
+  };
+
+  const programsData = headerData.find((item) => item.id === 3);
+
   return (
     <header style={headerStyles}>
       <div style={containerStyles}>
@@ -325,35 +429,83 @@ const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav style={navStyles}>
           {headerData.map((item: HeaderItem) => (
-            <HeaderLink
-              key={item?.id}
-              item={item}
-              style={{
-                fontSize: "0.9375rem",
-                padding: "0.5rem 1rem",
-                color: "#1e293b",
-                textDecoration: "none",
-                borderRadius: "0.25rem",
-                transition: "background-color 0.2s",
-              }}
-            />
+            <div
+              key={item.id}
+              onMouseEnter={() => item.id === 3 && handleMegaMenuEnter(item.id)}
+              onMouseLeave={item.id === 3 ? handleMegaMenuLeave : undefined}
+            >
+              <HeaderLink
+                item={item}
+                style={{
+                  fontSize: "0.9375rem",
+                  padding: "0.5rem 1rem",
+                  color: "#1e293b",
+                  textDecoration: "none",
+                  borderRadius: "0.25rem",
+                  transition: "background-color 0.2s",
+                  position: "relative",
+                  fontWeight: item.id === 3 ? 600 : "normal",
+                }}
+                isMegaMenu={item.id === 3} // ✅ PASS this
+              />
+            </div>
           ))}
         </nav>
 
+        {/* Mega Menu for Programs */}
+        {isMegaMenuOpen && activeMegaMenu === 3 && (
+          <div
+            style={megaMenuStyles}
+            ref={megaMenuRef}
+            onMouseEnter={cancelMegaMenuLeave}
+            onMouseLeave={handleMegaMenuLeave}
+          >
+            <div style={megaMenuGridStyles}>
+              {programsData?.submenu?.map((category) => (
+                <div key={category.id} style={megaMenuColumnStyles}>
+                  <h3 style={megaMenuCategoryTitleStyles}>{category.label}</h3>
+                  {category.submenu ? (
+                    category.submenu.map((program) => (
+                      <Link
+                        key={program.id}
+                        href={program.href}
+                        style={megaMenuItemStyles}
+                        onClick={() => {
+                          setIsMegaMenuOpen(false);
+                          setActiveMegaMenu(null);
+                        }}
+                      >
+                        <Icon
+                          icon="ph:caret-right-fill"
+                          style={megaMenuIconStyles}
+                        />
+                        <span style={megaMenuLinkStyles}>{program.label}</span>
+                      </Link>
+                    ))
+                  ) : (
+                    <Link
+                      href={category.href}
+                      style={megaMenuItemStyles}
+                      onClick={() => {
+                        setIsMegaMenuOpen(false);
+                        setActiveMegaMenu(null);
+                      }}
+                    >
+                      <Icon
+                        icon="ph:caret-right-fill"
+                        style={megaMenuIconStyles}
+                      />
+                      <span style={megaMenuLinkStyles}>Learn More</span>
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Right Controls */}
         <div style={controlsStyles}>
-          {/* Theme Toggle */}
-          {/* <button
-            aria-label="Toggle theme"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            style={themeButtonStyles}
-          >
-            <Icon
-              icon={theme === "dark" ? "ph:sun" : "ph:moon"}
-              style={{ fontSize: "1.25rem" }}
-            />
-          </button> */}
-
           {/* Desktop Auth Buttons */}
           {!isMobileView && (
             <>
