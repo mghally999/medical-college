@@ -545,23 +545,11 @@ const RegisteredNursingBSN = () => {
               <AnimatedCard key={index} index={index} color="blue">
                 <div className="flex items-start">
                   <motion.div
-                    className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-[#0a0f2c] to-[#1a1f3a] flex items-center justify-center mr-4 mt-1"
+                    className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-[#0a0f2c] to-[#1a1f3a] flex items-center justify-center mr-4 mt-1 text-white font-bold text-lg"
                     whileHover={{ scale: 1.2 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-2m2-0h-2m0 0H9m2 0h2m2 0h2m-4 0h-2m0 0H7"
-                      />
-                    </svg>
+                    {index + 1}
                   </motion.div>
                   <p className="text-lg">{point}</p>
                 </div>
