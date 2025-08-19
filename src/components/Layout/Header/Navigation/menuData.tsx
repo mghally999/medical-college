@@ -129,34 +129,34 @@ export const headerData: HeaderItem[] = [
       { id: 48, label: "Student Voice", href: "/admission/student-voice" },
     ],
   },
-  {
-    id: 5,
-    label: "Placements",
-    href: "#",
-    submenu: [
-      { id: 51, label: "Placement Overview", href: "/placements" },
-      { id: 52, label: "Objective", href: "/placements/objectives" },
-      { id: 53, label: "Briefing", href: "/placements/briefing" },
-      {
-        id: 54,
-        label: "Why Recruit CSEI Students",
-        href: "/placements/why-csei",
-      },
-      { id: 55, label: "Our Services", href: "/placements/services" },
-      {
-        id: 56,
-        label: "Student Satisfaction",
-        href: "/placements/highlights/student-satisfaction",
-      },
-      {
-        id: 57,
-        label: "Opportunities Generated",
-        href: "/placements/highlights/opportunities-generated",
-      },
-      { id: 58, label: "Our Industry Partners", href: "/placements/partners" },
-      { id: 59, label: "Partner With Us", href: "/placements/partner-with-us" },
-    ],
-  },
+  // {
+  //   id: 5,
+  //   label: "Placements",
+  //   href: "#",
+  //   submenu: [
+  //     { id: 51, label: "Placement Overview", href: "/placements" },
+  //     { id: 52, label: "Objective", href: "/placements/objectives" },
+  //     { id: 53, label: "Briefing", href: "/placements/briefing" },
+  //     {
+  //       id: 54,
+  //       label: "Why Recruit CSEI Students",
+  //       href: "/placements/why-csei",
+  //     },
+  //     { id: 55, label: "Our Services", href: "/placements/services" },
+  //     {
+  //       id: 56,
+  //       label: "Student Satisfaction",
+  //       href: "/placements/highlights/student-satisfaction",
+  //     },
+  //     {
+  //       id: 57,
+  //       label: "Opportunities Generated",
+  //       href: "/placements/highlights/opportunities-generated",
+  //     },
+  //     { id: 58, label: "Our Industry Partners", href: "/placements/partners" },
+  //     { id: 59, label: "Partner With Us", href: "/placements/partner-with-us" },
+  //   ],
+  // },
   {
     id: 6,
     label: "Contact Us",

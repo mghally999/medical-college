@@ -65,7 +65,7 @@ export const TuitionFees: React.FC<TuitionFeesProps> = ({ program }) => {
       </p>
 
       <div className="table-container">
-        <table>
+        <table className="text-white">
           <thead>
             <tr>
               {professional ? (
@@ -141,7 +141,7 @@ export const TuitionFees: React.FC<TuitionFeesProps> = ({ program }) => {
         }
 
         .disclaimer {
-          color: #6b7280;
+          color: #ffffff;
           margin-bottom: 2rem;
           font-size: 0.95rem;
         }

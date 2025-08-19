@@ -2,7 +2,7 @@ const programs = [
   // Nursing Programs
   {
     id: 1,
-    title: "Registered Nursing - Bachelor of Science (RN - BSN)",
+    title: "Registered Nurse - Bachelor of Science Nurse (RN - BSN)",
     href: "/programs/nursing/rn-bsn",
     school: "Nursing School",
     category: "Nursing",

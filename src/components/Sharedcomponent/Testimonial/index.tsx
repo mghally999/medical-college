@@ -1,14 +1,26 @@
 "use client";
-import { useState, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 import {
   FiUpload,
   FiCheck,
   FiChevronDown,
   FiLoader,
   FiSend,
+  FiActivity,
+  FiHeart,
+  FiDroplet,
+  FiPlus,
 } from "react-icons/fi";
-import { FaGraduationCap, FaGlobe, FaUserGraduate } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaGlobe,
+  FaUserGraduate,
+  FaClinicMedical,
+  FaMicroscope,
+  FaHospital,
+} from "react-icons/fa";
+import { MdHealthAndSafety, MdMedicalServices } from "react-icons/md";
 
 export default function ApplicationForm() {
   const [formData, setFormData] = useState({
@@ -23,6 +35,8 @@ export default function ApplicationForm() {
     hearAboutUs: "",
     admissionIntake: "",
     interestedProgram: "",
+    specialization: "",
+    medicalLicense: "",
   });
 
   const [activeSection, setActiveSection] = useState(0);
@@ -35,6 +49,18 @@ export default function ApplicationForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
+  const containerRef = useRef(null);
+
+  // Parallax scroll effects
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
+  const xDoctor = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const xNurse = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   const sections = [
     "Personal Information",
@@ -42,6 +68,28 @@ export default function ApplicationForm() {
     "Program Selection",
     "Documents",
     "Review & Submit",
+  ];
+
+  const medicalPrograms = [
+    "Medical Doctor (MD)",
+    "Nursing (BSN)",
+    "Physician Assistant",
+    "Medical Laboratory Science",
+    "Pharmacy",
+    "Public Health",
+    "Biomedical Engineering",
+    "Healthcare Administration",
+  ];
+
+  const specializations = [
+    "Cardiology",
+    "Neurology",
+    "Pediatrics",
+    "Oncology",
+    "Orthopedics",
+    "General Surgery",
+    "Internal Medicine",
+    "Emergency Medicine",
   ];
 
   const handleChange = (
@@ -132,12 +180,42 @@ export default function ApplicationForm() {
 
   if (formSubmitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#420516] to-[#6A0D1B] p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#420516] to-[#6A0D1B] p-4 relative overflow-hidden">
+        {/* Animated medical icons in background */}
+        <motion.div
+          className="absolute top-1/4 left-1/4"
+          animate={{
+            rotate: 360,
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          <FaClinicMedical className="text-[#FF9A9E]/10 text-9xl" />
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-1/3 right-1/4"
+          animate={{
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        >
+          <MdMedicalServices className="text-[#FF9A9E]/10 text-8xl" />
+        </motion.div>
+
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-[#1a1a2e] rounded-3xl shadow-2xl overflow-hidden max-w-md w-full border border-[#FF9A9E]/30"
+          className="bg-[#1a1a2e] rounded-3xl shadow-2xl overflow-hidden max-w-md w-full border border-[#FF9A9E]/30 relative z-10"
         >
           <div className="bg-gradient-to-r from-[#6A0D1B] to-[#420516] p-8 text-center">
             <motion.div
@@ -155,8 +233,9 @@ export default function ApplicationForm() {
           </div>
           <div className="p-8 text-center">
             <p className="text-gray-300 mb-6">
-              Thank you for your application. We've received your information
-              and will contact you within 3-5 business days.
+              Thank you for your application to our medical program. Our
+              admissions team will review your information and contact you
+              within 3-5 business days.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -172,42 +251,104 @@ export default function ApplicationForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#420516] to-[#6A0D1B] py-12 px-4 sm:px-6 lg:px-8">
-      {/* Cosmic background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-[#FF9A9E] rounded-full filter blur-[100px] opacity-10"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-[#6A0D1B] rounded-full filter blur-[120px] opacity-15"></div>
+    <div
+      ref={containerRef}
+      className="min-h-screen bg-gradient-to-br from-[#420516] to-[#6A0D1B] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
+      {/* Parallax Medical Background */}
+      <motion.div
+        className="absolute inset-0 bg-[url('/medical-bg.jpg')] bg-cover bg-center opacity-20"
+        style={{ y: yBg }}
+      />
 
-        {/* Stars */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-white rounded-full"
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.5 + 0.5,
-              animation: `twinkle ${Math.random() * 5 + 3}s infinite alternate`,
-            }}
-          ></div>
-        ))}
-      </div>
+      {/* Floating medical elements with parallax */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 text-[#FF9A9E]/30 text-6xl"
+        style={{ x: xDoctor, y: yText }}
+      >
+        <FaHospital />
+      </motion.div>
 
-      <div className="relative max-w-5xl mx-auto">
+      <motion.div
+        className="absolute bottom-1/4 right-1/4 text-[#FF9A9E]/30 text-6xl"
+        style={{ x: xNurse, y: yText }}
+      >
+        <MdHealthAndSafety />
+      </motion.div>
+
+      {/* Animated pulse elements */}
+      <motion.div
+        className="absolute top-1/3 right-1/3 w-16 h-16 bg-[#FF9A9E] rounded-full"
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.1, 0.3, 0.1],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+      />
+
+      <motion.div
+        className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-[#6A0D1B] rounded-full"
+        animate={{
+          scale: [1, 1.8, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          repeatType: "loop",
+          delay: 1,
+        }}
+      />
+
+      {/* Floating medical icons */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-[#FF9A9E]/10"
+          style={{
+            fontSize: `${Math.random() * 20 + 20}px`,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, Math.random() * 40 - 20, 0],
+            x: [0, Math.random() * 40 - 20, 0],
+            rotate: [0, Math.random() * 360],
+          }}
+          transition={{
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+          }}
+        >
+          {i % 3 === 0 ? (
+            <FiHeart />
+          ) : i % 3 === 1 ? (
+            <FiActivity />
+          ) : (
+            <FiDroplet />
+          )}
+        </motion.div>
+      ))}
+
+      <div className="relative max-w-5xl mx-auto z-10">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-[#1a1a2e] rounded-3xl shadow-2xl overflow-hidden border border-[#FF9A9E]/30"
+          className="bg-[#1a1a2e] rounded-3xl shadow-2xl overflow-hidden border border-[#FF9A9E]/30 backdrop-blur-sm bg-opacity-90"
         >
           {/* Progress Steps */}
           <div className="bg-gradient-to-r from-[#6A0D1B] to-[#420516] px-8 py-6">
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-2xl font-bold text-white flex items-center gap-2">
                 <FaUserGraduate className="text-xl" />
-                Apply Now
+                Medical Program Application
               </h1>
               <div className="text-white font-medium">
                 Step {activeSection + 1} of {sections.length}
@@ -490,7 +631,7 @@ export default function ApplicationForm() {
                       className="md:col-span-2"
                     >
                       <label className="block text-sm font-medium text-gray-300 mb-1">
-                        Interested Program{" "}
+                        Medical Program{" "}
                         <span className="text-[#FF9A9E]">*</span>
                       </label>
                       <div className="relative">
@@ -504,31 +645,54 @@ export default function ApplicationForm() {
                           <option value="" className="bg-[#16213e]">
                             Select program
                           </option>
-                          <option
-                            value="computer-science"
-                            className="bg-[#16213e]"
-                          >
-                            Computer Science
-                          </option>
-                          <option
-                            value="business-administration"
-                            className="bg-[#16213e]"
-                          >
-                            Business Administration
-                          </option>
-                          <option
-                            value="healthcare-management"
-                            className="bg-[#16213e]"
-                          >
-                            Healthcare Management
-                          </option>
-                          <option value="engineering" className="bg-[#16213e]">
-                            Engineering
-                          </option>
+                          {medicalPrograms.map((program) => (
+                            <option
+                              key={program}
+                              value={program}
+                              className="bg-[#16213e]"
+                            >
+                              {program}
+                            </option>
+                          ))}
                         </select>
                         <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
                       </div>
                     </motion.div>
+
+                    {formData.interestedProgram.includes("Medical Doctor") && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 }}
+                        className="md:col-span-2"
+                      >
+                        <label className="block text-sm font-medium text-gray-300 mb-1">
+                          Specialization Interest
+                        </label>
+                        <div className="relative">
+                          <select
+                            name="specialization"
+                            value={formData.specialization}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl appearance-none focus:ring-2 focus:ring-[#FF9A9E] focus:border-[#FF9A9E] text-white transition-all duration-300"
+                          >
+                            <option value="" className="bg-[#16213e]">
+                              Select specialization (optional)
+                            </option>
+                            {specializations.map((spec) => (
+                              <option
+                                key={spec}
+                                value={spec}
+                                className="bg-[#16213e]"
+                              >
+                                {spec}
+                              </option>
+                            ))}
+                          </select>
+                          <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
+                        </div>
+                      </motion.div>
+                    )}
 
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -566,6 +730,25 @@ export default function ApplicationForm() {
                         <FiChevronDown className="absolute right-3 top-4 text-gray-400" />
                       </div>
                     </motion.div>
+
+                    {formData.interestedProgram.includes("Medical Doctor") && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.25 }}
+                      >
+                        <label className="block text-sm font-medium text-gray-300 mb-1">
+                          Medical License Number (if applicable)
+                        </label>
+                        <input
+                          type="text"
+                          name="medicalLicense"
+                          value={formData.medicalLicense}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 bg-[#16213e] border border-[#1f2a4a] rounded-xl focus:ring-2 focus:ring-[#FF9A9E] focus:border-[#FF9A9E] text-white transition-all duration-300"
+                        />
+                      </motion.div>
+                    )}
                   </div>
                 )}
 
@@ -687,6 +870,58 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.3 }}
                     >
                       <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Medical License/Certifications (if applicable)
+                      </label>
+                      <div className="flex items-center justify-center w-full">
+                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#1f2a4a] rounded-xl cursor-pointer hover:border-[#FF9A9E] transition-all duration-300 bg-[#16213e]/50">
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            {fileUploads.licenseFile.uploaded ? (
+                              <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                className="text-green-500 flex items-center"
+                              >
+                                <FiCheck className="mr-2" />
+                                <span>{fileUploads.licenseFile.name}</span>
+                              </motion.div>
+                            ) : fileUploads.licenseFile.uploading ? (
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ repeat: Infinity, duration: 1 }}
+                                className="text-[#FF9A9E]"
+                              >
+                                <FiLoader />
+                              </motion.div>
+                            ) : (
+                              <>
+                                <FiUpload className="text-gray-400 text-2xl mb-2" />
+                                <p className="text-sm text-gray-400">
+                                  <span className="font-semibold">
+                                    Click to upload
+                                  </span>{" "}
+                                  or drag and drop
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  PDF, JPG up to 10MB
+                                </p>
+                              </>
+                            )}
+                          </div>
+                          <input
+                            type="file"
+                            className="hidden"
+                            onChange={(e) => handleFileChange("licenseFile", e)}
+                          />
+                        </label>
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         Experience Certificates (Optional)
                       </label>
                       <div className="flex items-center justify-center w-full">
@@ -746,7 +981,8 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.1 }}
                       className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-white mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4 flex items-center gap-2">
+                        <FaUserGraduate />
                         Personal Information
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -783,7 +1019,8 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.2 }}
                       className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-white mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4 flex items-center gap-2">
+                        <FaGlobe />
                         Contact Details
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -808,7 +1045,8 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.3 }}
                       className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-white mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4 flex items-center gap-2">
+                        <FaGraduationCap />
                         Program Information
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -818,12 +1056,32 @@ export default function ApplicationForm() {
                             {formData.interestedProgram || "Not provided"}
                           </p>
                         </div>
+                        {formData.specialization && (
+                          <div>
+                            <p className="text-sm text-gray-400">
+                              Specialization Interest
+                            </p>
+                            <p className="font-medium text-white">
+                              {formData.specialization}
+                            </p>
+                          </div>
+                        )}
                         <div>
                           <p className="text-sm text-gray-400">Intake</p>
                           <p className="font-medium text-white">
                             {formData.admissionIntake || "Not provided"}
                           </p>
                         </div>
+                        {formData.medicalLicense && (
+                          <div>
+                            <p className="text-sm text-gray-400">
+                              Medical License
+                            </p>
+                            <p className="font-medium text-white">
+                              {formData.medicalLicense}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </motion.div>
 
@@ -833,7 +1091,8 @@ export default function ApplicationForm() {
                       transition={{ delay: 0.4 }}
                       className="bg-[#16213e] p-6 rounded-xl border border-[#1f2a4a]"
                     >
-                      <h3 className="text-lg font-medium text-white mb-4">
+                      <h3 className="text-lg font-medium text-white mb-4 flex items-center gap-2">
+                        <FiUpload />
                         Documents
                       </h3>
                       <div className="space-y-2">
@@ -851,6 +1110,14 @@ export default function ApplicationForm() {
                             {fileUploads.cvFile.name || "Not uploaded"}
                           </span>
                         </div>
+                        {fileUploads.licenseFile.name && (
+                          <div className="flex items-center">
+                            <FiCheck className="text-green-500 mr-2" />
+                            <span className="text-white">
+                              Medical License: {fileUploads.licenseFile.name}
+                            </span>
+                          </div>
+                        )}
                         {fileUploads.experienceFile.name && (
                           <div className="flex items-center">
                             <FiCheck className="text-green-500 mr-2" />
@@ -884,7 +1151,8 @@ export default function ApplicationForm() {
                             htmlFor="privacy"
                             className="font-medium text-gray-300"
                           >
-                            I agree to the privacy policy
+                            I agree to the privacy policy and certify that all
+                            information provided is accurate
                           </label>
                           <p className="text-gray-400">
                             We'll never share your information with anyone else.
@@ -903,8 +1171,9 @@ export default function ApplicationForm() {
                     onClick={prevSection}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-[#1f2a4a] text-gray-300 rounded-xl font-medium hover:bg-[#2a3a5f] transition-colors"
+                    className="px-6 py-3 bg-[#1f2a4a] text-gray-300 rounded-xl font-medium hover:bg-[#2a3a5f] transition-colors flex items-center gap-2"
                   >
+                    <FiChevronDown className="transform rotate-90" />
                     Back
                   </motion.button>
                 ) : (
@@ -917,9 +1186,10 @@ export default function ApplicationForm() {
                     onClick={nextSection}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-gradient-to-r from-[#6A0D1B] to-[#420516] text-white rounded-xl font-medium shadow-lg ml-auto hover:shadow-xl hover:from-[#420516] hover:to-[#6A0D1B] transition-all duration-300"
+                    className="px-6 py-3 bg-gradient-to-r from-[#6A0D1B] to-[#420516] text-white rounded-xl font-medium shadow-lg ml-auto hover:shadow-xl hover:from-[#420516] hover:to-[#6A0D1B] transition-all duration-300 flex items-center gap-2"
                   >
                     Continue
+                    <FiChevronDown className="transform -rotate-90" />
                   </motion.button>
                 ) : (
                   <motion.button
@@ -938,28 +1208,6 @@ export default function ApplicationForm() {
         </motion.div>
       </div>
 
-      {/* Cosmic background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-[#6A0D1B] rounded-full filter blur-[100px] opacity-10"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-[#420516] rounded-full filter blur-[120px] opacity-15"></div>
-
-        {/* Stars */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-white rounded-full"
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.5 + 0.5,
-              animation: `twinkle ${Math.random() * 5 + 3}s infinite alternate`,
-            }}
-          ></div>
-        ))}
-      </div>
-
       <style jsx global>{`
         @keyframes twinkle {
           0% {
@@ -967,6 +1215,21 @@ export default function ApplicationForm() {
           }
           100% {
             opacity: 1;
+          }
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+            opacity: 0.7;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 0.7;
           }
         }
       `}</style>

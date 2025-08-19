@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import Hero from "@/components/Home/Hero/index";
-import MedicineService from "@/components/Home/MedicineService";
+import WhyChooseUs from "@/components/Home/WhyChooseUs";
 import Service from "@/components/Sharedcomponent/Services";
 import Support from "@/components/Sharedcomponent/Support";
 import DoctorTeam from "@/components/Sharedcomponent/DoctorTeam";
@@ -17,12 +17,12 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <MedicineService />
+      <WhyChooseUs />
+      <Testimonials />
       <Service isSpace={true} />
       <AboutSection />
       <Support />
       <DoctorTeam />
-      <Testimonials />
       <Blog />
       <ContactForm />
     </main>

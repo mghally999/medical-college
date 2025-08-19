@@ -54,7 +54,7 @@ const InteractiveAboutSection = () => {
     },
     {
       icon: <FaAward />,
-      title: "Why CSEI?",
+      title: "Why CS Medical College?",
       description: "What sets us apart from others",
       href: "/about/why-csei",
       image: "/images/about/why-us.jpg",
