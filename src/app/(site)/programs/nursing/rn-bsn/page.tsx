@@ -404,7 +404,12 @@ const RegisteredNursingBSN = () => {
       {/* Entry Requirements Section */}
       <SectionWrapper color="red">
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedTitle title="Entry Requirements" delay={0.2} color="red" />
+          <AnimatedTitle
+            title="Entry Requirements"
+            delay={0.2}
+            color="red"
+            subtitle={undefined}
+          />
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <AnimatedCard
@@ -451,7 +456,12 @@ const RegisteredNursingBSN = () => {
       {/* Qualification Units Section */}
       <SectionWrapper color="blue">
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedTitle title="Qualification Units" delay={0.2} color="blue" />
+          <AnimatedTitle
+            title="Qualification Units"
+            delay={0.2}
+            color="blue"
+            subtitle={undefined}
+          />
 
           <div className="overflow-x-auto rounded-xl border border-white/20 backdrop-blur-md bg-white/5">
             <motion.table
@@ -502,6 +512,7 @@ const RegisteredNursingBSN = () => {
             title="Assessment & Feedback Mechanisms"
             delay={0.2}
             color="red"
+            subtitle={undefined}
           />
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -526,6 +537,7 @@ const RegisteredNursingBSN = () => {
             title="Practical Internship"
             delay={0.2}
             color="blue"
+            subtitle={undefined}
           />
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -562,7 +574,12 @@ const RegisteredNursingBSN = () => {
       {/* Career Opportunities Section */}
       <SectionWrapper color="red">
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedTitle title="Career Opportunities" delay={0.2} color="red" />
+          <AnimatedTitle
+            title="Career Opportunities"
+            delay={0.2}
+            color="red"
+            subtitle={undefined}
+          />
 
           <div className="grid md:grid-cols-2 gap-8">
             {careerPoints.map((point, index) => (
@@ -598,7 +615,12 @@ const RegisteredNursingBSN = () => {
       {/* Programme Delivery Section */}
       <SectionWrapper color="blue">
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedTitle title="Programme Delivery" delay={0.2} color="blue" />
+          <AnimatedTitle
+            title="Programme Delivery"
+            delay={0.2}
+            color="blue"
+            subtitle={undefined}
+          />
 
           <div className="max-w-4xl mx-auto text-lg leading-relaxed text-center mb-14">
             <p>
@@ -650,7 +672,12 @@ const RegisteredNursingBSN = () => {
       {/* Grading of Units Section */}
       <SectionWrapper color="red">
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedTitle title="Grading of Units" delay={0.2} color="red" />
+          <AnimatedTitle
+            title="Grading of Units"
+            delay={0.2}
+            color="red"
+            subtitle={undefined}
+          />
 
           <div className="max-w-4xl mx-auto text-lg leading-relaxed text-center">
             <p>
@@ -670,6 +697,7 @@ const RegisteredNursingBSN = () => {
             title="Programme-Specific Resources"
             delay={0.2}
             color="blue"
+            subtitle={undefined}
           />
 
           <div className="grid md:grid-cols-3 gap-8">
