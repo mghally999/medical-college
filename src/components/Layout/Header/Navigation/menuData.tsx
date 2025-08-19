@@ -35,9 +35,68 @@ export const headerData: HeaderItem[] = [
         href: "/programs",
       },
       {
+        id: 35,
+        label: "AMCA",
+        href: "/programs/amca",
+        submenu: [
+          {
+            id: 351,
+            label: "Dental Support Technician Certificate",
+            href: "/programs/amca/dental-support-technician",
+          },
+          {
+            id: 352,
+            label: "Medical Administrative Assistant Certificate",
+            href: "/programs/amca/medical-administrative-assistant",
+          },
+          {
+            id: 353,
+            label: "Medical Assistant Certificate",
+            href: "/programs/amca/medical-assistant",
+          },
+          {
+            id: 354,
+            label: "Medical Coder and Biller Certificate",
+            href: "/programs/amca/medical-coder-biller",
+          },
+          {
+            id: 355,
+            label: "Mental Health Technician Certificate",
+            href: "/programs/amca/mental-health-technician",
+          },
+          {
+            id: 356,
+            label: "Phlebotomy Technician Certificate",
+            href: "/programs/amca/phlebotomy-technician",
+          },
+        ],
+      },
+      {
+        id: 34,
+        label: "One Day Certification Courses",
+        href: "/programs/one-day",
+        submenu: [
+          {
+            id: 341,
+            label: "Basic Life Support (BLS)",
+            href: "/programs/one-day-certification/bls",
+          },
+          {
+            id: 342,
+            label: "Pain Management (PM)",
+            href: "/programs/one-day-certification/pain-management",
+          },
+          {
+            id: 343,
+            label: "Infection Control (IC)",
+            href: "/programs/one-day-certification/infection-control",
+          },
+        ],
+      },
+      {
         id: 32,
         label: "Nursing Programs",
-        href: "/programs/nursing", // Updated from "#"
+        href: "/programs/nursing",
         submenu: [
           {
             id: 321,
@@ -54,49 +113,12 @@ export const headerData: HeaderItem[] = [
       {
         id: 33,
         label: "Health and Social Care",
-        href: "/programs/health-social-care", // Updated from "#"
+        href: "/programs/health-social-care",
         submenu: [
           {
             id: 331,
-            label: "Level 3 Diploma in Health and Social Care",
-            href: "/programs/health-social-care/level-3",
-          },
-          {
-            id: 332,
-            label: "Level 4 Diploma in Health and Social Care",
-            href: "/programs/health-social-care/level-4",
-          },
-          {
-            id: 333,
-            label: "Level 5 Diploma in Health and Social Care",
-            href: "/programs/health-social-care/level-5",
-          },
-          {
-            id: 334,
-            label: "Professional Certificate in Health and Social Care",
-            href: "/programs/health-social-care/professional",
-          },
-        ],
-      },
-      {
-        id: 34,
-        label: "One Day Certification Courses",
-        href: "/programs/one-day", // Updated from "#"
-        submenu: [
-          {
-            id: 341,
-            label: "Basic Life Support (BLS)",
-            href: "/programs/one-day-certification/bls",
-          },
-          {
-            id: 342,
-            label: "Pain Management (PM)",
-            href: "/programs/one-day-certification/pain-management",
-          },
-          {
-            id: 343,
-            label: "Infection Control (IC)",
-            href: "/programs/one-day-certification/infection-control",
+            label: "Bachelor of Arts in Health & Social Care",
+            href: "/programs/health-social-care/ba-hsc",
           },
         ],
       },

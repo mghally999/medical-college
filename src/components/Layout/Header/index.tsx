@@ -281,7 +281,7 @@ const Header: React.FC = () => {
 
   // Mobile menu title
   const mobileMenuTitleStyles: React.CSSProperties = {
-    fontSize: "1.125rem",
+    fontSize: "1rem",
     fontWeight: 600,
     color: "#1e293b",
     margin: 0,
@@ -370,7 +370,7 @@ const Header: React.FC = () => {
 
   const megaMenuGridStyles: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gridTemplateColumns: "repeat(5, 1fr)", // exactly 4 equal columns
     gap: "2rem",
     maxWidth: "1200px",
     margin: "0 auto",
@@ -383,7 +383,7 @@ const Header: React.FC = () => {
   };
 
   const megaMenuCategoryTitleStyles: React.CSSProperties = {
-    fontSize: "1.125rem",
+    fontSize: "1rem",
     fontWeight: 600,
     color: "#6A0D1B",
     marginBottom: "0.5rem",

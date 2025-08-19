@@ -84,8 +84,8 @@ const programs = [
   // Health and Social Care Programs
   {
     id: 3,
-    title: "Level 3 Diploma in Health and Social Care",
-    href: "/programs/health-social-care/level-3",
+    title: "Bachelor of Arts in Health & Social Care",
+    href: "/programs/health-social-care/ba-hsc",
     school: "Health Science Discipline",
     category: "Health & Social Care",
     level: "Level 3",
@@ -103,75 +103,6 @@ const programs = [
       "Safeguarding",
       "Duty of Care",
       "Health & Safety",
-    ],
-  },
-  {
-    id: 4,
-    title: "Level 4 Diploma in Health and Social Care",
-    href: "/programs/health-social-care/level-4",
-    school: "Health Science Discipline",
-    category: "Health & Social Care",
-    level: "Level 4",
-    duration: "1.5 Years",
-    rating: 4.6,
-    discountedPrice: 6500,
-    imageSrc:
-      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: false,
-    popular: false,
-    description:
-      "Intermediate qualification developing more specialized skills in health and social care.",
-    skills: [
-      "Person-Centered Care",
-      "Team Leadership",
-      "Risk Management",
-      "Professional Practice",
-    ],
-  },
-  {
-    id: 5,
-    title: "Level 5 Diploma in Health and Social Care",
-    href: "/programs/health-social-care/level-5",
-    school: "Health Science Discipline",
-    category: "Health & Social Care",
-    level: "Level 5",
-    duration: "2 Years",
-    rating: 4.7,
-    discountedPrice: 8500,
-    imageSrc:
-      "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: false,
-    popular: true,
-    description:
-      "Advanced qualification for those looking to progress into management roles in care settings.",
-    skills: [
-      "Service Management",
-      "Quality Assurance",
-      "Policy Implementation",
-      "Strategic Planning",
-    ],
-  },
-  {
-    id: 6,
-    title: "Professional Certificate in Health and Social Care",
-    href: "/programs/health-social-care/professional",
-    school: "Health Science Discipline",
-    category: "Professional Courses",
-    level: "Certificate",
-    duration: "6 Months",
-    rating: 4.4,
-    discountedPrice: 3000,
-    imageSrc:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: false,
-    description:
-      "Specialized certificate for professionals seeking to enhance their caregiving skills.",
-    skills: [
-      "Advanced Care Techniques",
-      "Ethical Practice",
-      "Specialized Care",
-      "Professional Development",
     ],
   },
 
