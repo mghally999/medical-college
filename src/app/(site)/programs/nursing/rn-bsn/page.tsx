@@ -287,7 +287,7 @@ const RegisteredNursingBSN = () => {
           >
             Registered Nursing -{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] to-[#ffffff]">
-              BSN
+              Bachelor's of Science Nursing
             </span>
           </motion.h1>
 
