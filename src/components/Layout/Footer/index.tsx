@@ -153,8 +153,8 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-white">Contact Us</h3>
             <ul className="space-y-3 text-[#B8C1EC]">
               <li className="flex">
-                <FiMapPin className="mr-3 mt-1 text-[#46C4FF]" /> Stellar City,
-                TN 4263, United States
+                <FiMapPin className="mr-3 mt-1 text-[#46C4FF]" /> 128 City Road
+                London EC1, United Kingdom
               </li>
               <li className="flex">
                 <FiMail className="mr-3 text-[#46C4FF]" />{" "}
