@@ -297,9 +297,9 @@ const RegisteredNursingBSN = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="inline-block mb-8"
           >
-            <div className="text-2xl md:text-3xl font-semibold px-6 py-3 bg-gradient-to-r from-[#0a0f2c]/30 to-[#4B0E1E]/30 rounded-xl border border-white/20 backdrop-blur-md">
+            {/* <div className="text-2xl md:text-3xl font-semibold px-6 py-3 bg-gradient-to-r from-[#0a0f2c]/30 to-[#4B0E1E]/30 rounded-xl border border-white/20 backdrop-blur-md">
               Level 6 Qualification
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.p

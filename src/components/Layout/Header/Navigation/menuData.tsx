@@ -34,43 +34,43 @@ export const headerData: HeaderItem[] = [
         label: "Overview",
         href: "/programs",
       },
-      {
-        id: 35,
-        label: "AMCA",
-        href: "/programs/amca",
-        submenu: [
-          {
-            id: 351,
-            label: "Dental Support Technician Certificate",
-            href: "/programs/amca/dental-support-technician",
-          },
-          {
-            id: 352,
-            label: "Medical Administrative Assistant Certificate",
-            href: "/programs/amca/medical-administrative-assistant",
-          },
-          {
-            id: 353,
-            label: "Medical Assistant Certificate",
-            href: "/programs/amca/medical-assistant",
-          },
-          {
-            id: 354,
-            label: "Medical Coder and Biller Certificate",
-            href: "/programs/amca/medical-coder-biller",
-          },
-          {
-            id: 355,
-            label: "Mental Health Technician Certificate",
-            href: "/programs/amca/mental-health-technician",
-          },
-          {
-            id: 356,
-            label: "Phlebotomy Technician Certificate",
-            href: "/programs/amca/phlebotomy-technician",
-          },
-        ],
-      },
+      // {
+      //   id: 35,
+      //   label: "AMCA",
+      //   href: "/programs/amca",
+      //   submenu: [
+      //     {
+      //       id: 351,
+      //       label: "Dental Support Technician Certificate",
+      //       href: "/programs/amca/dental-support-technician",
+      //     },
+      //     {
+      //       id: 352,
+      //       label: "Medical Administrative Assistant Certificate",
+      //       href: "/programs/amca/medical-administrative-assistant",
+      //     },
+      //     {
+      //       id: 353,
+      //       label: "Medical Assistant Certificate",
+      //       href: "/programs/amca/medical-assistant",
+      //     },
+      //     {
+      //       id: 354,
+      //       label: "Medical Coder and Biller Certificate",
+      //       href: "/programs/amca/medical-coder-biller",
+      //     },
+      //     {
+      //       id: 355,
+      //       label: "Mental Health Technician Certificate",
+      //       href: "/programs/amca/mental-health-technician",
+      //     },
+      //     {
+      //       id: 356,
+      //       label: "Phlebotomy Technician Certificate",
+      //       href: "/programs/amca/phlebotomy-technician",
+      //     },
+      //   ],
+      // },
       {
         id: 34,
         label: "One Day Certification Courses",

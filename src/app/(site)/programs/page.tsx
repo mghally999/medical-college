@@ -173,144 +173,144 @@ const programs = [
   },
 
   // AMCA Courses
-  {
-    id: 10,
-    title: "Dental Support Technician Certificate",
-    href: "/programs/amca/dental-support-technician",
-    school: "AMCA Certification",
-    category: "AMCA",
-    level: "Certificate",
-    duration: "6 Months",
-    rating: 4.7,
-    discountedPrice: 1800,
-    imageSrc:
-      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: true,
-    description:
-      "Comprehensive training for dental support technicians, covering chairside assisting, sterilization, and patient care.",
-    skills: [
-      "Dental Terminology",
-      "Sterilization Techniques",
-      "Chairside Assisting",
-      "Patient Management",
-    ],
-  },
-  {
-    id: 11,
-    title: "Medical Administrative Assistant Certificate",
-    href: "/programs/amca/medical-administrative-assistant",
-    school: "AMCA Certification",
-    category: "AMCA",
-    level: "Certificate",
-    duration: "6 Months",
-    rating: 4.6,
-    discountedPrice: 1600,
-    imageSrc:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: false,
-    description:
-      "Training for medical administrative professionals, covering office procedures, medical billing, and patient scheduling.",
-    skills: [
-      "Medical Billing",
-      "Patient Scheduling",
-      "Electronic Health Records",
-      "Office Management",
-    ],
-  },
-  {
-    id: 12,
-    title: "Medical Assistant Certificate",
-    href: "/programs/amca/medical-assistant",
-    school: "AMCA Certification",
-    category: "AMCA",
-    level: "Certificate",
-    duration: "9 Months",
-    rating: 4.8,
-    discountedPrice: 2200,
-    imageSrc:
-      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: true,
-    description:
-      "Comprehensive medical assistant program covering both clinical and administrative skills for healthcare settings.",
-    skills: [
-      "Vital Signs",
-      "Phlebotomy Basics",
-      "Patient Preparation",
-      "Medical Documentation",
-    ],
-  },
-  {
-    id: 13,
-    title: "Medical Coder and Biller Certificate",
-    href: "/programs/amca/medical-coder-biller",
-    school: "AMCA Certification",
-    category: "AMCA",
-    level: "Certificate",
-    duration: "8 Months",
-    rating: 4.5,
-    discountedPrice: 2000,
-    imageSrc:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: false,
-    description:
-      "Specialized training in medical coding and billing procedures, including ICD-10, CPT, and HCPCS coding systems.",
-    skills: [
-      "ICD-10 Coding",
-      "CPT Coding",
-      "Insurance Claims",
-      "Revenue Cycle Management",
-    ],
-  },
-  {
-    id: 14,
-    title: "Mental Health Technician Certificate",
-    href: "/programs/amca/mental-health-technician",
-    school: "AMCA Certification",
-    category: "AMCA",
-    level: "Certificate",
-    duration: "7 Months",
-    rating: 4.9,
-    discountedPrice: 1900,
-    imageSrc:
-      "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: true,
-    description:
-      "Training for mental health technicians, covering patient care, therapeutic techniques, and crisis intervention.",
-    skills: [
-      "Behavioral Observation",
-      "Crisis Intervention",
-      "Therapeutic Communication",
-      "Treatment Planning",
-    ],
-  },
-  {
-    id: 15,
-    title: "Phlebotomy Technician Certificate",
-    href: "/programs/amca/phlebotomy-technician",
-    school: "AMCA Certification",
-    category: "AMCA",
-    level: "Certificate",
-    duration: "4 Months",
-    rating: 4.7,
-    discountedPrice: 1500,
-    imageSrc:
-      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    professional: true,
-    popular: true,
-    description:
-      "Specialized training in phlebotomy techniques, specimen collection, and laboratory safety procedures.",
-    skills: [
-      "Venipuncture",
-      "Specimen Handling",
-      "Patient Identification",
-      "Laboratory Safety",
-    ],
-  },
+  // {
+  //   id: 10,
+  //   title: "Dental Support Technician Certificate",
+  //   href: "/programs/amca/dental-support-technician",
+  //   school: "AMCA Certification",
+  //   category: "AMCA",
+  //   level: "Certificate",
+  //   duration: "6 Months",
+  //   rating: 4.7,
+  //   discountedPrice: 1800,
+  //   imageSrc:
+  //     "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   professional: true,
+  //   popular: true,
+  //   description:
+  //     "Comprehensive training for dental support technicians, covering chairside assisting, sterilization, and patient care.",
+  //   skills: [
+  //     "Dental Terminology",
+  //     "Sterilization Techniques",
+  //     "Chairside Assisting",
+  //     "Patient Management",
+  //   ],
+  // },
+  // {
+  //   id: 11,
+  //   title: "Medical Administrative Assistant Certificate",
+  //   href: "/programs/amca/medical-administrative-assistant",
+  //   school: "AMCA Certification",
+  //   category: "AMCA",
+  //   level: "Certificate",
+  //   duration: "6 Months",
+  //   rating: 4.6,
+  //   discountedPrice: 1600,
+  //   imageSrc:
+  //     "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   professional: true,
+  //   popular: false,
+  //   description:
+  //     "Training for medical administrative professionals, covering office procedures, medical billing, and patient scheduling.",
+  //   skills: [
+  //     "Medical Billing",
+  //     "Patient Scheduling",
+  //     "Electronic Health Records",
+  //     "Office Management",
+  //   ],
+  // },
+  // {
+  //   id: 12,
+  //   title: "Medical Assistant Certificate",
+  //   href: "/programs/amca/medical-assistant",
+  //   school: "AMCA Certification",
+  //   category: "AMCA",
+  //   level: "Certificate",
+  //   duration: "9 Months",
+  //   rating: 4.8,
+  //   discountedPrice: 2200,
+  //   imageSrc:
+  //     "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   professional: true,
+  //   popular: true,
+  //   description:
+  //     "Comprehensive medical assistant program covering both clinical and administrative skills for healthcare settings.",
+  //   skills: [
+  //     "Vital Signs",
+  //     "Phlebotomy Basics",
+  //     "Patient Preparation",
+  //     "Medical Documentation",
+  //   ],
+  // },
+  // {
+  //   id: 13,
+  //   title: "Medical Coder and Biller Certificate",
+  //   href: "/programs/amca/medical-coder-biller",
+  //   school: "AMCA Certification",
+  //   category: "AMCA",
+  //   level: "Certificate",
+  //   duration: "8 Months",
+  //   rating: 4.5,
+  //   discountedPrice: 2000,
+  //   imageSrc:
+  //     "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   professional: true,
+  //   popular: false,
+  //   description:
+  //     "Specialized training in medical coding and billing procedures, including ICD-10, CPT, and HCPCS coding systems.",
+  //   skills: [
+  //     "ICD-10 Coding",
+  //     "CPT Coding",
+  //     "Insurance Claims",
+  //     "Revenue Cycle Management",
+  //   ],
+  // },
+  // {
+  //   id: 14,
+  //   title: "Mental Health Technician Certificate",
+  //   href: "/programs/amca/mental-health-technician",
+  //   school: "AMCA Certification",
+  //   category: "AMCA",
+  //   level: "Certificate",
+  //   duration: "7 Months",
+  //   rating: 4.9,
+  //   discountedPrice: 1900,
+  //   imageSrc:
+  //     "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   professional: true,
+  //   popular: true,
+  //   description:
+  //     "Training for mental health technicians, covering patient care, therapeutic techniques, and crisis intervention.",
+  //   skills: [
+  //     "Behavioral Observation",
+  //     "Crisis Intervention",
+  //     "Therapeutic Communication",
+  //     "Treatment Planning",
+  //   ],
+  // },
+  // {
+  //   id: 15,
+  //   title: "Phlebotomy Technician Certificate",
+  //   href: "/programs/amca/phlebotomy-technician",
+  //   school: "AMCA Certification",
+  //   category: "AMCA",
+  //   level: "Certificate",
+  //   duration: "4 Months",
+  //   rating: 4.7,
+  //   discountedPrice: 1500,
+  //   imageSrc:
+  //     "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  //   professional: true,
+  //   popular: true,
+  //   description:
+  //     "Specialized training in phlebotomy techniques, specimen collection, and laboratory safety procedures.",
+  //   skills: [
+  //     "Venipuncture",
+  //     "Specimen Handling",
+  //     "Patient Identification",
+  //     "Laboratory Safety",
+  //   ],
+  // },
 ];
 
 // Categories derived from your navigation
@@ -318,7 +318,7 @@ const categories = [
   "Nursing Programs",
   "Health and Social Care",
   "One Day Certification Courses",
-  "AMCA",
+  // "AMCA",
 ];
 
 // Sorting options
@@ -498,7 +498,7 @@ export default function ProgramsPage() {
     if (course.professional) {
       return course.title;
     } else {
-      return `${course.title} – ${course.level}`;
+      return `${course.title}`;
     }
   }, []);
 
@@ -743,7 +743,7 @@ export default function ProgramsPage() {
                 All Programs
               </motion.button>
 
-              <motion.button
+              {/* <motion.button
                 className={`cosmic-filter-btn ${
                   activeFilter === "professional" ? "active" : ""
                 }`}
@@ -753,7 +753,7 @@ export default function ProgramsPage() {
               >
                 <FiAward className="filter-icon" />
                 Professional ({professionalCount})
-              </motion.button>
+              </motion.button> */}
             </div>
 
             <div className="view-sort-controls">
