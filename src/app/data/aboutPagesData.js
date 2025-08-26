@@ -17,7 +17,12 @@ const aboutPagesData = [
     image:
       "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=2070&q=80",
     content: [
-      `At CSEI Academy, we ignite potential through accessible education and an inclusive environment that celebrates diversity. Our dedicated mentors provide personalized support to learners from all backgrounds. Through hands-on experiences and industry partnerships, we bridge academia and real-world success. We cultivate global citizens equipped to lead and innovate in an evolving world.`,
+      `At CS Medical College Ltd, UK, our mission is to inspire, educate, and empower the next generation of healthcare professionals with the knowledge, skills, and compassion necessary to improve lives and communities worldwide.`,
+      `Excellence in Education – delivering internationally recognized, innovative, and student-centered medical and health sciences programs.`,
+      `Practical Learning – equipping students with hands-on clinical training, research opportunities, and industry exposure to prepare them for global healthcare challenges.`,
+      `Accessible & Flexible Learning – offering on-campus and online learning opportunities, ensuring students worldwide can pursue quality medical education regardless of location.`,
+      `Community & Global Impact – nurturing ethical, socially responsible professionals dedicated to advancing healthcare standards both locally and globally.`,
+      `Through academic rigor, professional partnerships, innovative online platforms, and a culture of care, CS Medical College Ltd strives to be a leading hub of medical education, research, and innovation.`,
     ],
   },
   {

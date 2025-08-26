@@ -182,6 +182,6 @@ export const headerData: HeaderItem[] = [
   {
     id: 6,
     label: "Contact Us",
-    href: "/contact-us",
+    href: "contact",
   },
 ];
