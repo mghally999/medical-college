@@ -29,12 +29,14 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({
   const path = usePathname();
 
   const handleMouseEnter = () => {
+    // Don't open submenu if it's a mega menu (handled by parent)
     if (item.submenu?.length && !isMegaMenu) {
       setSubmenuOpen(true);
     }
   };
 
   const handleMouseLeave = () => {
+    // Don't close submenu if it's a mega menu (handled by parent)
     if (!isMegaMenu) {
       setSubmenuOpen(false);
     }
@@ -60,7 +62,7 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({
         {item.label}
 
         {/* ✅ Show arrow ONLY if it has submenu AND it is NOT a mega menu */}
-        {item.submenu && (
+        {item.submenu && !isMegaMenu && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.2em"
@@ -84,12 +86,12 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({
 
       {/* ✅ Render normal dropdown ONLY if not a mega menu */}
       {submenuOpen && item.submenu && !isMegaMenu && (
-        <div className="absolute left-0 top-full mt-2 w-60 bg-white shadow-lg rounded-lg z-50">
+        <div className="absolute left-0 top-full mt-0 w-60 bg-white shadow-lg rounded-lg z-50 border border-gray-200">
           {item.submenu.map((subItem) => (
             <Link
               key={subItem.id}
               href={subItem.href}
-              className={`block px-4 py-2 text-sm text-black hover:bg-gray-200 transition-all duration-150 ${
+              className={`block px-4 py-2 text-sm text-black hover:bg-gray-100 transition-all duration-150 ${
                 path === subItem.href ? "bg-primary text-white" : ""
               }`}
             >

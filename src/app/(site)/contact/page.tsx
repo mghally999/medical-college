@@ -57,7 +57,7 @@ const ContactPage = () => {
   );
 
   return (
-    <main className="w-full min-h-screen bg-gray-900 text-white overflow-hidden custom-padding">
+    <main className="w-full min-h-screen text-white overflow-hidden custom-padding-4">
       {/* Header Section */}
       <section className="relative py-20 px-6 md:px-20 text-center bg-gradient-to-br from-[#1a1f3a] via-[#0a0f2c] to-[#4B0E1E] overflow-hidden">
         <div className="max-w-6xl mx-auto">

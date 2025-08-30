@@ -2,6 +2,78 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { FiArrowRight, FiMail, FiPhone, FiUpload } from "react-icons/fi";
+
+const BrandColors = {
+  primaryDark: "#000C2D",
+  primaryBlue: "#001E6C",
+  accent: "#E05500",
+  lightText: "#F5F5F5",
+  border: "#FFFFFF22",
+  background: "#F8F9FA",
+};
+
+// Application Form Modal Component
+const ApplicationFormModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg max-w-md w-full p-6">
+        <h2 className="text-2xl font-bold mb-4">Application Form</h2>
+        <form className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">Full Name</label>
+            <input
+              type="text"
+              className="w-full p-2 border rounded"
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Email</label>
+            <input
+              type="email"
+              className="w-full p-2 border rounded"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Phone</label>
+            <input
+              type="tel"
+              className="w-full p-2 border rounded"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Course</label>
+            <select className="w-full p-2 border rounded">
+              <option>Infection Control and Prevention Course</option>
+              <option>Other Course 1</option>
+              <option>Other Course 2</option>
+            </select>
+          </div>
+          <div className="flex justify-end space-x-2 mt-6">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 border rounded"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-600 text-white rounded"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 const InfectionControlCourse = () => {
   const containerRef = useRef(null);
@@ -11,10 +83,14 @@ const InfectionControlCourse = () => {
   });
 
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const overviewPoints = [
     "Comprehensive Curriculum: Covers the principles of infection control and prevention, including hand hygiene, sterilization practices, and personal protective equipment (PPE).",
@@ -319,11 +395,11 @@ const InfectionControlCourse = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button className="px-8 py-4 bg-gradient-to-r from-[#0a0f2c] to-[#4B0E1E] rounded-xl font-semibold text-lg hover:from-[#1a1f3a] hover:to-[#800020] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#4B0E1E]/30">
-              Register Now
-            </button>
-            <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300">
-              Learn More
+            <button
+              onClick={handleOpenModal}
+              className="px-8 py-4 bg-gradient-to-r from-[#0a0f2c] to-[#4B0E1E] rounded-xl font-semibold text-lg hover:from-[#1a1f3a] hover:to-[#800020] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#4B0E1E]/30"
+            >
+              Apply Now
             </button>
           </motion.div>
         </motion.div>
@@ -681,8 +757,11 @@ const InfectionControlCourse = () => {
             viewport={{ once: true }}
             className="mt-12"
           >
-            <button className="px-10 py-5 bg-gradient-to-r from-[#4B0E1E] to-[#800020] rounded-2xl font-semibold text-xl hover:from-[#800020] hover:to-[#4B0E1E] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[#800020]/40 mb-6">
-              Register Now
+            <button
+              onClick={handleOpenModal}
+              className="px-10 py-5 bg-gradient-to-r from-[#4B0E1E] to-[#800020] rounded-2xl font-semibold text-xl hover:from-[#800020] hover:to-[#4B0E1E] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[#800020]/40 mb-6"
+            >
+              Apply Now
             </button>
             <p className="text-lg opacity-80 mt-8">
               Our team is ready to answer your questions and guide you through
@@ -701,6 +780,9 @@ const InfectionControlCourse = () => {
           style={{ x: "-50%" }}
         />
       </SectionWrapper>
+
+      {/* Application Form Modal */}
+      <ApplicationFormModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </main>
   );
 };

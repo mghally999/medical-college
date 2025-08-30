@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import ApplicationFormModal from "@/components/Common/ApplicationFormModal";
 
 const BasicLifeSupportCourse = () => {
   const containerRef = useRef(null);
@@ -11,10 +12,14 @@ const BasicLifeSupportCourse = () => {
   });
 
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const overviewPoints = [
     "3.5 CME Points: Earn 3.5 CME points upon completion, contributing to your professional development.",
@@ -321,11 +326,11 @@ const BasicLifeSupportCourse = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button className="px-8 py-4 bg-gradient-to-r from-[#0a0f2c] to-[#4B0E1E] rounded-xl font-semibold text-lg hover:from-[#1a1f3a] hover:to-[#800020] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#4B0E1E]/30">
-              Register Now
-            </button>
-            <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300">
-              Learn More
+            <button
+              onClick={handleOpenModal}
+              className="px-8 py-4 bg-gradient-to-r from-[#0a0f2c] to-[#4B0E1E] rounded-xl font-semibold text-lg hover:from-[#1a1f3a] hover:to-[#800020] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#4B0E1E]/30"
+            >
+              Apply Now
             </button>
           </motion.div>
         </motion.div>
@@ -683,8 +688,11 @@ const BasicLifeSupportCourse = () => {
             viewport={{ once: true }}
             className="mt-12"
           >
-            <button className="px-10 py-5 bg-gradient-to-r from-[#4B0E1E] to-[#800020] rounded-2xl font-semibold text-xl hover:from-[#800020] hover:to-[#4B0E1E] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[#800020]/40 mb-6">
-              Register Now
+            <button
+              onClick={handleOpenModal}
+              className="px-10 py-5 bg-gradient-to-r from-[#4B0E1E] to-[#800020] rounded-2xl font-semibold text-xl hover:from-[#800020] hover:to-[#4B0E1E] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[#800020]/40 mb-6"
+            >
+              Apply Now
             </button>
             <p className="text-lg opacity-80 mt-8">
               Our team is ready to answer your questions and guide you through
@@ -703,6 +711,9 @@ const BasicLifeSupportCourse = () => {
           style={{ x: "-50%" }}
         />
       </SectionWrapper>
+
+      {/* Application Form Modal */}
+      <ApplicationFormModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </main>
   );
 };

@@ -42,7 +42,7 @@ const ScholarshipOpportunities = () => {
 
   return (
     <section
-      className="py-20"
+      className="py-20 custom-padding-2"
       style={{ backgroundColor: BrandColors.background }}
     >
       <div className="container mx-auto px-4 max-w-6xl">
@@ -125,13 +125,13 @@ const ScholarshipOpportunities = () => {
           </p>
 
           <motion.button
+            type="button"
             onClick={handleOpenModal}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 rounded-lg font-semibold text-white flex items-center justify-center gap-2 mx-auto"
-            style={{ backgroundColor: BrandColors.accent }}
+            className="px-6 py-3 bg-gradient-to-r from-[#6A0D1B] to-[#420516] text-white rounded-xl font-medium shadow-lg ml-auto hover:shadow-xl hover:from-[#420516] hover:to-[#6A0D1B] transition-all duration-300 flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white flex items-center justify-center gap-2 mx-auto"
           >
-            Apply for Scholarships <FiArrowRight />
+            Apply For Scholarships <FiArrowRight />
           </motion.button>
 
           <p

@@ -283,7 +283,7 @@ const Header: React.FC = () => {
   const mobileMenuTitleStyles: React.CSSProperties = {
     fontSize: "1rem",
     fontWeight: 600,
-    color: "#1e293b",
+    color: "##1e293b",
     margin: 0,
   };
 
@@ -354,10 +354,10 @@ const Header: React.FC = () => {
     zIndex: 50,
   };
 
-  // Mega Menu Styles
+  // Mega Menu Styles - FIXED GAP ISSUE
   const megaMenuStyles: React.CSSProperties = {
     position: "absolute",
-    top: "calc(100% - 5px)", // Reduced gap - moves menu closer to the link
+    top: "100%", // Changed from "calc(100% - 5px)"
     left: 0,
     width: "100%",
     backgroundColor: "#ffffff",
@@ -365,12 +365,12 @@ const Header: React.FC = () => {
     padding: "2rem",
     display: isMegaMenuOpen ? "block" : "none",
     zIndex: 40,
-    borderTop: "1px solid #e2e8f0",
+    borderTop: "2px solid #6A0D1B", // More visible border
   };
 
   const megaMenuGridStyles: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)", // exactly 4 equal columns
+    gridTemplateColumns: "repeat(5, 1fr)",
     gap: "2rem",
     maxWidth: "1200px",
     margin: "0 auto",
@@ -424,6 +424,12 @@ const Header: React.FC = () => {
               key={item.id}
               onMouseEnter={() => item.id === 3 && handleMegaMenuEnter(item.id)}
               onMouseLeave={item.id === 3 ? handleMegaMenuLeave : undefined}
+              style={{
+                paddingBottom: "15px", // Increased padding for better hover area
+                marginBottom: "-15px", // Negative margin to compensate
+                position: "relative",
+                zIndex: 45, // Ensure hover area is above other elements
+              }}
             >
               <HeaderLink
                 item={item}
@@ -437,7 +443,7 @@ const Header: React.FC = () => {
                   position: "relative",
                   fontWeight: item.id === 3 ? 600 : "normal",
                 }}
-                isMegaMenu={item.id === 3} // ✅ PASS this
+                isMegaMenu={item.id === 3}
               />
             </div>
           ))}

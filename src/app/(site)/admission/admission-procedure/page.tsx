@@ -50,7 +50,7 @@ const AdmissionProcedure = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white custom-padding-2">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <motion.div

@@ -412,15 +412,6 @@ const RegisteredNursingBSN = () => {
           />
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <AnimatedCard
-              index={0}
-              className="md:col-span-2 text-center"
-              color="red"
-            >
-              <h3 className="text-2xl font-semibold mb-3">IELTS Minimum 6.0</h3>
-              <p className="opacity-90">Or OET with a Grade C</p>
-            </AnimatedCard>
-
             <AnimatedCard index={1} color="red">
               <h4 className="text-xl font-semibold mb-3 flex items-center">
                 <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-3">
@@ -439,6 +430,15 @@ const RegisteredNursingBSN = () => {
                 Diploma or ADN
               </h4>
               <p>Nursing diploma or Associate Degree in Nursing</p>
+            </AnimatedCard>
+
+            <AnimatedCard
+              index={0}
+              className="md:col-span-2 text-center"
+              color="red"
+            >
+              <h3 className="text-2xl font-semibold mb-3">IELTS Minimum 6.0</h3>
+              <p className="opacity-90">Or OET with a Grade C</p>
             </AnimatedCard>
           </div>
         </div>
