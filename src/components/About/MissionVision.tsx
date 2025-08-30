@@ -47,10 +47,14 @@ const MissionVision = () => {
               <h3 className="text-2xl font-bold">Our Mission</h3>
             </div>
             <p className="text-gray-200">
-              To provide exceptional medical education that combines rigorous
-              academic training with extensive clinical experience, preparing
-              compassionate, skilled physicians who will lead the future of
-              healthcare.
+              CS Medical College of UK is committed to shaping the next
+              generation of medical professionals through a dynamic, innovative,
+              and inclusive platform. We deliver world-class medical education
+              anchored in evidence-based practice, pioneering research, and
+              meaningful community engagement. Our mission is to inspire our
+              students to pursue excellence, integrity, and compassion while
+              empowering them to meet evolving healthcare challenges with
+              resilience and professionalism.
             </p>
           </motion.div>
 
@@ -82,9 +86,15 @@ const MissionVision = () => {
               <h3 className="text-2xl font-bold">Our Vision</h3>
             </div>
             <p className="text-gray-200">
-              To be recognized as a global leader in medical education,
-              research, and patient care, transforming healthcare through
-              innovation, excellence, and a commitment to serving humanity.
+              Our vision is to set the benchmark for transformative medical
+              education in the UK for the next decade, nurturing clinicians,
+              researchers, and leaders who drive healthcare innovation and
+              equity worldwide. CS Medical College will stand at the forefront
+              of adopting emerging technologies, integrated patient-centered
+              care, and sustainable practices. Through robust partnerships and a
+              global outlook, we seek to promote health, well-being, and
+              scientific advancement, ensuring our graduates shape the future of
+              medicine with curiosity, skill, and purpose.
             </p>
           </motion.div>
         </div>

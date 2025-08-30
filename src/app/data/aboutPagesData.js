@@ -63,7 +63,7 @@ const aboutPagesData = [
     ],
   },
   {
-    slug: "why-csei",
+    slug: "why-cs-medical-college",
     title: "Why Choose CS Medical College?",
     image: "/images/about/why-csei.png",
     list: [

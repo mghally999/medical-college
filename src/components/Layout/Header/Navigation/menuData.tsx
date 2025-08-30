@@ -21,7 +21,11 @@ export const headerData: HeaderItem[] = [
         label: "Our Accreditation & Recognitions",
         href: "/about/accreditation",
       },
-      { id: 26, label: "Why CSEI Medical College?", href: "/about/why-csei" },
+      {
+        id: 26,
+        label: "Why CS Medical College?",
+        href: "/about/why-cs-medical-college",
+      },
     ],
   },
   {
@@ -130,25 +134,21 @@ export const headerData: HeaderItem[] = [
     href: "#",
     submenu: [
       { id: 41, label: "Admissions Overview", href: "/admission" },
-      { id: 42, label: "Apply Now", href: "/admission/apply-now" },
+      {
+        id: 42,
+        label: "Application Process",
+        href: "/admission/application-process",
+      },
       {
         id: 43,
-        label: "Admission Process",
-        href: "/admission/admission-process",
+        label: "Admission Procedure",
+        href: "/admission/admission-procedure",
       },
-      { id: 44, label: "Arrival Support", href: "/admission/arrival-support" },
       {
-        id: 45,
-        label: "International Students",
-        href: "/admission/international-students",
+        id: 44,
+        label: "Scholarship Opportunities",
+        href: "/admission/scholarship-opportunities",
       },
-      { id: 46, label: "Tuition and Fees", href: "/admission/tuition-fees" },
-      {
-        id: 47,
-        label: "Financial Aid & Scholarships",
-        href: "/admission/financial-aid-scholarships",
-      },
-      { id: 48, label: "Student Voice", href: "/admission/student-voice" },
     ],
   },
   // {

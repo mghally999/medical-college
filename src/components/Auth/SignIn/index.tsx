@@ -47,10 +47,6 @@ const Signin = ({ signInOpen }: { signInOpen?: any }) => {
 
   return (
     <>
-      <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
-        <Logo />
-      </div>
-
       <SocialSignIn />
 
       <span className="z-1 relative my-8 block text-center">

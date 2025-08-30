@@ -17,13 +17,13 @@ const Logo: React.FC<LogoProps> = ({ className, style, ...rest }) => {
       style={style}
       {...rest}
     >
-      <div className="relative w-[150px] h-[50px]">
+      <div className="relative w-[350px] h-[130px]">
         <Image
           src="/images/logo/logo.png"
           alt="CS Medical Logo"
           fill
           quality={100}
-          className="object-contain"
+          className="object-contain translate-y-[-35px]"
         />
       </div>
     </Link>

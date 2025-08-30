@@ -52,10 +52,6 @@ const SignUp = ({ signUpOpen }: { signUpOpen?: any }) => {
 
   return (
     <>
-      <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
-        <Logo />
-      </div>
-
       <div className="mb-8">
         <SocialSignUp />
       </div>

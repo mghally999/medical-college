@@ -18,10 +18,10 @@ export default function AboutPage() {
       <AboutCSMedical />
       <MissionVision />
       <CoreValues />
-      <LeadershipTeam />
+      {/* <LeadershipTeam /> */}
       <WhyChooseUs />
       <Accreditation />
-      <FacultyTeam />
+      {/* <FacultyTeam /> */}
     </div>
   );
 }

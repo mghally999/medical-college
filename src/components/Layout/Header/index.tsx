@@ -139,7 +139,7 @@ const Header: React.FC = () => {
     left: 0,
     right: 0,
     width: "100%",
-    height: "80px",
+    height: "150px",
     zIndex: 50,
     backgroundColor: "#ffffff",
     backdropFilter: "none",
@@ -357,7 +357,7 @@ const Header: React.FC = () => {
   // Mega Menu Styles
   const megaMenuStyles: React.CSSProperties = {
     position: "absolute",
-    top: "100%",
+    top: "calc(100% - 5px)", // Reduced gap - moves menu closer to the link
     left: 0,
     width: "100%",
     backgroundColor: "#ffffff",
@@ -494,57 +494,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         )}
-
-        {/* Right Controls */}
-        <div style={controlsStyles}>
-          {/* Desktop Auth Buttons */}
-          {!isMobileView && (
-            <>
-              <button
-                style={authButtonStyles}
-                onClick={() => setIsSignInOpen(true)}
-              >
-                Sign In
-              </button>
-              <button
-                style={authButtonStyles}
-                onClick={() => setIsSignUpOpen(true)}
-              >
-                Sign Up
-              </button>
-            </>
-          )}
-
-          {/* Mobile/Tablet Compact Auth Buttons */}
-          {isMobileView && (
-            <div style={{ display: "flex", gap: "0.5rem" }}>
-              <button
-                style={compactAuthButtonStyles}
-                onClick={() => setIsSignInOpen(true)}
-              >
-                Sign In
-              </button>
-              <button
-                style={secondaryAuthButtonStyles}
-                onClick={() => setIsSignUpOpen(true)}
-              >
-                Sign Up
-              </button>
-            </div>
-          )}
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setNavbarOpen(!navbarOpen)}
-            style={mobileMenuButtonStyles}
-            aria-label="Toggle menu"
-          >
-            <Icon
-              icon={navbarOpen ? "ic:round-close" : "ci:hamburger"}
-              style={{ fontSize: "1.25rem" }}
-            />
-          </button>
-        </div>
+        {/* Right Controls Here In Google Keep */}
       </div>
 
       {/* Mobile Menu */}

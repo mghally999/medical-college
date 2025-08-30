@@ -541,7 +541,7 @@ export default function ProgramsPage() {
   };
 
   return (
-    <div className="cosmic-explorer-ultra">
+    <div className="cosmic-explorer-ultra custom-padding">
       {/* Animated cosmic background with particles */}
       <div className="cosmic-particle-bg">
         {[...Array(100)].map((_, i) => (

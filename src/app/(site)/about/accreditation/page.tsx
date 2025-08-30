@@ -2,6 +2,35 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+
+// --- Accreditation Logos ---
+const accreditationLogos = [
+  {
+    src: "/images/about/clients/accreditation-1-removebg-preview.png",
+    alt: "UK Government Approved",
+  },
+  {
+    src: "/images/about/clients/accreditation-2-removebg-preview.png",
+    alt: "UKRLP Registered",
+  },
+  {
+    src: "/images/about/clients/accreditation-3-removebg-preview.png",
+    alt: "AMCA Accredited",
+  },
+  {
+    src: "/images/about/clients/accreditation-4.png",
+    alt: "LCPS College Partnership",
+  },
+  {
+    src: "/images/about/clients/accreditation-5.png",
+    alt: "CPD Accreditation",
+  },
+  {
+    src: "/images/about/clients/accreditation-6.png",
+    alt: "Quality Assurance",
+  },
+];
 
 // --- Animated Background Particles ---
 const Particles = () => {
@@ -136,6 +165,60 @@ const SectionWrapper = ({ children, color = "blue" }) => {
   );
 };
 
+// --- Logo Carousel ---
+const LogoCarousel = () => {
+  return (
+    <section className="relative py-20 bg-gradient-to-br from-[#0a0f2c] to-[#1a1f3a] text-white overflow-hidden">
+      <Particles />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-bold mb-6"
+          >
+            Our Accrediting Bodies & Partners
+          </motion.h2>
+          <div className="w-20 h-1 bg-[#5a7eff] mx-auto mb-8" />
+        </div>
+
+        <div className="relative">
+          <div className="flex overflow-x-auto pb-10 hide-scrollbar">
+            <div className="flex space-x-12 px-4">
+              {accreditationLogos.map((logo, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center justify-center flex-shrink-0"
+                >
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 w-48 h-48 flex items-center justify-center">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        fill
+                        className="object-contain p-4"
+                      />
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm text-gray-200 text-center max-w-[160px]">
+                    {logo.alt}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const AccreditationsPage = () => {
   const accreditations = [
     {
@@ -188,9 +271,17 @@ const AccreditationsPage = () => {
         </motion.div>
       </section>
 
+      {/* Logo Carousel Section */}
+      <LogoCarousel />
+
       {/* Accreditation List */}
       <SectionWrapper color="blue">
         <div className="max-w-6xl mx-auto relative z-10">
+          <AnimatedTitle
+            title="Our Accreditations"
+            subtitle="These recognitions validate our commitment to excellence in medical education"
+            color="blue"
+          />
           <div className="grid md:grid-cols-2 gap-10">
             {accreditations.map((acc, index) => (
               <AnimatedCard
@@ -215,6 +306,16 @@ const AccreditationsPage = () => {
           />
         </div>
       </SectionWrapper>
+
+      <style jsx>{`
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </main>
   );
 };
